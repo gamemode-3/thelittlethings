@@ -128,5 +128,5 @@ timer_4 = Timer()
 Timer.stop("timer_4")
 ```
 
-when a timer is stopped, the time elapsed is printed to the console.
-![Timer output](https://raw.githubusercontent.com/dots-git/thelittlethings/master/docs/assets/Timer_output.png =50x30)
+when a timer is stopped, the time elapsed is printed to the console:
+<img src="https://raw.githubusercontent.com/dots-git/thelittlethings/master/docs/assets/Timer_output.png" width="250" height="70" />
