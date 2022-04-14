@@ -10,7 +10,6 @@ def run(file_path: str, refresh_interval: float = 0.1):
     file_closed = multiprocessing.Manager().Value("closed", False)
 
     # open the first system argument as a file
-
     if not os.path.isfile(file_path):
         base_path = os.path.dirname(sys.argv[0])
         if os.path.isfile(base_path + file_path):
@@ -19,11 +18,17 @@ def run(file_path: str, refresh_interval: float = 0.1):
             file_path = base_path + os.sep + file_path
         else:
             raise FileNotFoundError(
-                "File not found: \n  " + file_path 
-                + "\n| " + base_path + file_path 
-                + "\n| " + base_path + os.sep + file_path
+                "File not found: \n  "
+                + file_path
+                + "\n| "
+                + base_path
+                + file_path
+                + "\n| "
+                + base_path
+                + os.sep
+                + file_path
             )
-    
+
     with open(file_path, "r") as f:
         # read the file
         code = f.read()

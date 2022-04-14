@@ -1,6 +1,6 @@
 """
 ## the little things
-A library that provides a number of utilities to make your developement life easier.
+A library full of useful things.
 """
 
 from .progress_bar import *

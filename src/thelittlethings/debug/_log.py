@@ -1,5 +1,7 @@
 import os
 from ._coloring import translate_color_codes
+from ..values import UNDEFINED
+from ..files import load_file
 
 
 class Log:
@@ -8,9 +10,9 @@ class Log:
 
     _full_str = ""
 
-    def __new__(cls, *values, sep=" ", end="\n", print_=None, file=None):
-        file = file or cls._file
-        print_ = print_ if print_ is not None else cls.print
+    def __new__(cls, *values, sep=" ", end="\n", print_=UNDEFINED, file_path=UNDEFINED):
+        file = load_file(file_path, True, default=None) or cls._file
+        print_ = print_ if print_ is not UNDEFINED else cls.print
 
 
         if print_:
@@ -28,17 +30,13 @@ class Log:
 
         cls._full_str += write_string
 
-        if cls._file is not None:
-            cls._file.write(write_string)
+        if file is not None:
+            file.write(write_string)
     
     @classmethod
     def load_file(cls, file_path, create_if_nonexistant=True):
         cls.close_file()
-        if create_if_nonexistant and not os.path.exists(file_path):
-            cls._file = open(file_path, "x")
-
-        else:
-            cls._file = open(file_path, "w")
+        cls._file = load_file(file_path, create_if_nonexistant)
     
     @classmethod
     def close_file(cls):

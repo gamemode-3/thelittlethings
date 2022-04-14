@@ -40,11 +40,11 @@ class Timer:
         if "time" not in cls.timers[name]:
             raise Exception(f"Timer {name} not stopped")
 
-        name_string = f"{Fore.LIGHTCYAN_EX}{Style.BRIGHT}{name}{Style.RESET_ALL}"
+        name_string = f"[Fore: cyan, Style: bright]{name}[Style: reset_all]"
 
-        time_string = f"{Fore.LIGHTWHITE_EX}{Style.BRIGHT}{cls.timers[name]['time']:.{cls.logging_accuracy}f}{Style.RESET_ALL}"        
+        time_string = f"[Fore: white, Style: bright]{cls.timers[name]['time']:.{cls.logging_accuracy}f}[Style: reset_all]"        
 
-        Log(f"{Style.RESET_ALL}Timer {name_string} took {time_string} seconds")
+        Log(f"[Style: reset_all]Timer {name_string} took {time_string} seconds")
 
     @classmethod
     def delete(cls, name):

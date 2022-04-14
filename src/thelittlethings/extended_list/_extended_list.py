@@ -51,6 +51,7 @@ class EList(list, Iterable[T]):
         for item in original_list:
             if item not in self:
                 self.append(item)
+        return self
 
     def without_duplicates(self):
         new_list = EList()
@@ -75,6 +76,7 @@ class EList(list, Iterable[T]):
         '''
         for object in objects:
             self._clear_from_single_obj(object)
+        return self
         
     def without(self, *objects):
         '''
@@ -84,6 +86,10 @@ class EList(list, Iterable[T]):
         new_list.clear_from(*objects)
         return new_list
     
+    def extend(self, __iterable: Iterable[T]) -> None:
+        super().extend(__iterable)
+        return self
+
     def extended(self, iterable):
         new_list = self.copy()
         new_list.extend(iterable)
@@ -177,8 +183,14 @@ class EList(list, Iterable[T]):
     def enumerate(self):
         return EnumeratedEListIterator(self)
 
-    def copy(self) -> "EList":
+    def copy(self) -> "EList[T]":
         return EList(self)
+
+    def join(self, sep: str = " ") -> str:
+        '''
+        Join elements of the list together. All elements must be of type str.
+        '''
+        return sep.join(self)
 
 
 class EListIterator(Iterator[T]):
