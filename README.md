@@ -31,7 +31,7 @@ while True:
 now, when you run ```run.py```, ```"Hello World"``` will be printed every second. if you modify ```file_to_auto_reload.py``` and save it, you will see the changes reflected in the output.
 
 
-### ⚙ technical details
+### ⛭ technical details
 the script checks for changes in the file in set intervals. you can change the interval by modifying the ```refresh_interval``` variable. The refresh interval is in seconds and defaults to ```0.1```.
 
 if an error occurs, auto reload will not terminate.
@@ -100,7 +100,7 @@ color, background and style can be combined:
 Log("[Text: Red, Background: Green, Style: Bright]Hello World")
 ```
 
-### ⚙ technical details
+### ⛭ technical details
 when the script exits, the file is closed automatically and all styles are reset.
 
 
