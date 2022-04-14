@@ -3,9 +3,9 @@
 a library full of small utilities for use in your code
 
 ## contents
-• [installation](##installation)\
-• [auto reload](##auto-reload)\
-    ➜ [usage](##usage)\
+• [installation](#installation)\
+• [auto reload](#auto-reload)\
+    ➜ [usage](#usage)\
 
 ## installation
 thelittlethings is not yet available for installation. you can clone the repository and add the src directory to your PATH or project.
