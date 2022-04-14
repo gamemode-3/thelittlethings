@@ -100,7 +100,7 @@ color, background and style can be combined:
 Log("[Text: Red, Background: Green, Style: Bright]Hello World")
 ```
 
-### ⚙ technical details
+### ⛭ technical details
 when the script exits, the file is closed automatically and all styles are reset.
 
 
