@@ -1,6 +1,6 @@
 # thelittlethings
 
-a library full of small utilities for use in your code
+a library full of small utilities for you to use in your code
 
 ## contents
 • [installation](#installation)\
@@ -107,8 +107,20 @@ color, background and style can be combined:
 Log("[Text: Red, Background: Green, Style: Bright]Hello World")
 ```
 
+to access the color code parser, do:
+```python
+from thelittlethings import translate_color_codes
+
+
+translate_color_codes("your_text_here", console=True)
+```
+where the console argument says whether to apply the codes or ignore them.
+
+
 ### ⛭ technical details
 when the script exits, the file is closed automatically and all styles are reset.
+
+To make the parser ignore an opening square bracket, follow it with a backslash.
 
 
 ## debug.Timer
@@ -135,7 +147,23 @@ timer_4 = Timer()
 Timer.stop("timer_4")
 ```
 
-when a timer is stopped, the time elapsed is printed to the console:
+when a timer is stopped, the elapsed time is logged:
 
 <img src="https://raw.githubusercontent.com/dots-git/thelittlethings/master/docs/assets/Timer_output.png" width="260" height="70" />
+
+\
+to manually log the elapsed time, do:
+```python
+Timer.log("timer 1")
+```
+
+to get the elapsed time, do:
+```python
+Timer.get("timer 1")
+```
+
+### ⛭ technical details
+a timer is not automatically restarted after it is stopped. 
+
+```Timer``` uses ```Log``` for logging. color codes in timer names will therefore be applied.
 

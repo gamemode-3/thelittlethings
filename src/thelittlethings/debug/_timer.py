@@ -47,6 +47,16 @@ class Timer:
         Log(f"[Style: reset_all]Timer {name_string} took {time_string} seconds")
 
     @classmethod
+    def get(cls, name):
+        if name not in cls.timers:
+            raise Exception(f"Timer {name} not started")
+
+        if "time" not in cls.timers[name]:
+            raise Exception(f"Timer {name} not stopped")
+
+        return cls.timers[name]["time"]
+
+    @classmethod
     def delete(cls, name):
         if name not in cls.timers:
             raise Exception(f"Timer {name} does not exist")
@@ -83,6 +93,9 @@ class TimerObject:
     def log(self):
         Timer.log(self.name)
         return self
+    
+    def get(self):
+        return Timer.get(self.name)
     
     def delete(self):
         if self.name in Timer.timers:
