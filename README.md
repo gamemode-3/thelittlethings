@@ -4,14 +4,20 @@ a library full of small utilities for use in your code
 
 ## contents
 • [installation](#installation)\
-• [auto reload](#auto-reload)\
+• [auto_reload](#auto_reload)\
 &emsp;➜ [usage](#-usage)\
-&emsp;
+&emsp;⛭ [technical details](#-technical-details)\
+• [debug.Log](#debug.Log)\
+&emsp;➜ [usage](#-usage-1)\
+&emsp;⛭ [technical details](#-technical-details-1)\
+• [debug.Timer](#debug.Timer)\
+&emsp;➜ [usage](#-usage-2)\
+&emsp;⛭ [technical details](#-technical-details-2)
 
 ## installation
 thelittlethings is not yet available for installation. you can clone the repository and add the src directory to your PATH or project.
 
-## auto reload
+## auto_reload
 
 ### ➜ usage
 
