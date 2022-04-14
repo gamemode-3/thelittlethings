@@ -1,14 +1,14 @@
-# the little things
+# thelittlethings
 
 a library full of small utilities for use in your code
 
 ## contents
-...
-<!--TODO-->
+• [installation](##installation)\
+• [auto reload](##auto-reload)\
+    ➜ [usage](##usage)\
 
 ## installation
-...
-<!--TODO-->
+thelittlethings is not yet available for installation. you can clone the repository and add the src directory to your PATH or project.
 
 ## auto reload
 
@@ -130,4 +130,5 @@ Timer.stop("timer_4")
 
 when a timer is stopped, the time elapsed is printed to the console:
 
-<img src="https://raw.githubusercontent.com/dots-git/thelittlethings/master/docs/assets/Timer_output.png" width="250" height="70" />
+<img src="https://raw.githubusercontent.com/dots-git/thelittlethings/master/docs/assets/Timer_output.png" width="260" height="70" />
+
