@@ -148,18 +148,26 @@ Timer.stop("timer_4")
 ```
 
 when a timer is stopped, the elapsed time is logged:
-
-<img src="https://raw.githubusercontent.com/dots-git/thelittlethings/master/docs/assets/Timer_output.png" width="260" height="70" />
+<!-- 
+<img src="https://raw.githubusercontent.com/dots-git/thelittlethings/master/docs/assets/Timer_output.png" width="260" height="70" /> -->
+> Timer timer 1 took 0.000 seconds\
+> Timer timer 2 took 0.000 seconds\
+> Timer timer_3 took 0.000 seconds\
+> Timer timer_4 took 0.000 seconds
 
 \
 to manually log the elapsed time, do:
 ```python
 Timer.log("timer 1")
+
+timer_3.log()
 ```
 
 to get the elapsed time, do:
 ```python
 Timer.get("timer 1")
+
+timer_3.get()
 ```
 
 ### ⛭ technical details
@@ -167,3 +175,19 @@ a timer is not automatically restarted after it is stopped.
 
 ```Timer``` uses ```Log``` for logging. color codes in timer names will therefore be applied.
 
+## extended_list
+
+### ➜ usage
+```EList``` adds some useful funcionality to the ```list``` class.
+
+it allows you to merge two lists, ignoring duplicates:
+```python
+from thelittlethings import EList
+
+
+list_1 = EList([1, 2, 3, 4, 5])
+list_2 = EList([3, 4, 5, 6, 7])
+
+print(list1.merge(list_2))
+```
+> [1, 2, 3, 4, 5, 6, 7]
