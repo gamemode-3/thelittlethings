@@ -110,8 +110,13 @@ a library full of small utilities for you to use in your code
 
 
 ## installation
+make sure that you have [python3](https://www.python.org/downloads/) and [pip](https://pypi.org/project/pip/) installed and run the following command:
 ```
 pip install thelittlethings
+```
+if that doesn't work, try the following command:
+```
+pip3 install thelittlethings
 ```
 
 
