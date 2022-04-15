@@ -4,16 +4,25 @@ a library full of small utilities for you to use in your code
 
 
 ## contents
-• [installation](#installation)\
-• [auto_reload](#auto_reload)\
-&emsp;➜ [usage](#-usage)\
-&emsp;⛭ [technical details](#-technical-details)\
-• [debug.Log](#debug.Log)\
-&emsp;➜ [usage](#-usage-1)\
-&emsp;⛭ [technical details](#-technical-details-1)\
-• [debug.Timer](#debug.Timer)\
-&emsp;➜ [usage](#-usage-2)\
-&emsp;⛭ [technical details](#-technical-details-2)
+
+
+• [installation](#installation)
+|modules| | |
+|--------------|----------------|----|
+|• [auto_reload](#auto_reload) | ➜ [usage](#-usage) | ⛭ [technical details](#-technical-details) |
+• [debug.Log](#debug.Log) | ➜ [usage](#-usage-1) | ⛭ [technical details](#-technical-details-1) |
+| •  [debug.Timer](#debug.Timer) | ➜ [usage](#-usage-2) | ⛭ [technical details](#-technical-details-2) |
+| •  [extended_list](#extended_list) | ➜ [usage](#-usage-3) | ⛭ [technical details](#-technical-details-3) |
+| •  [files.load_file](#files.load_file) | ➜ [usage](#-usage-4) | ⛭ [technical details](#-technical-details-4) |
+| •  [linked_values](#linked_values) | ➜ [usage](#-usage-5) | ⛭ [technical details](#-technical-details-5) |
+| •  [progress_bar](#progress_bar) | ➜ [usage](#-usage-6) | ⛭ [technical details](#-technical-details-6) |
+| •  [assertion](#assertion) | ➜ [usage](#-usage-7) | ⛭ [technical details](#-technical-details-7) |
+| •  [testing.test](#testing.test) | ➜ [usage](#-usage-8) | ⛭ [technical details](#-technical-details-8) |
+| •  [to_string](#to_string) | ➜ [usage](#-usage-9) | ⛭ [technical details](#-technical-details-9) |
+| •  [constants](#constants) | ➜ [usage](#-usage-10) | ⛭ [technical details](#-technical-details-10) |
+| •  [variables.get_all_subclasses](#variables.get_all_subclasses) | ➜ [usage](#-usage-11) | ⛭ [technical details](#-technical-details-11) |
+| •  [variables.get_instances](#variable.get_instances) | ➜ [usage](#-usage-12) | ⛭ [technical details](#-technical-details-12) |
+| •  [variables.get_names](#variables.get_names) | ➜ [usage](#-usage-13) | ⛭ [technical details](#-technical-details-13) |
 
 
 ## installation
