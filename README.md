@@ -637,6 +637,13 @@ operation_subclasses is now a list of all subclasses of Operation including ```N
 ```get_all_subclasses``` works by recursively searching through the inheritance tree of the given class. it supports multiple inheritance.
 
 ## variables.get_instances
+
+### ➜ usage
+import:
+```python
+from thelittlethings import get_instances
+```
+
 ```get_instances``` is a function that returns all instances of a given class.
 
 ```python
