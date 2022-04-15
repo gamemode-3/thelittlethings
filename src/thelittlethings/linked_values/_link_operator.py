@@ -9,7 +9,7 @@ class Operator:
     
     @classmethod
     def _eval(cls, *values):
-        raise NotImplementedError(f"Operation not implemented for {cls.__name__}")
+        raise NotImplementedError(f"operation not implemented for {cls.__name__}")
 
     # Reverse operation.
     # For this:
@@ -18,7 +18,7 @@ class Operator:
     # a = Operation().reverse(b, c)  
     @classmethod
     def _eval_reverse(cls, result, *values):
-        raise NotImplementedError(f"Reverse operation not implemented for {cls.__name__}")
+        raise NotImplementedError(f"reverse operation not implemented for {cls.__name__}")
 
     @classmethod
     def reverse(cls, result, *values):
@@ -67,14 +67,14 @@ class Multiply(NumberOperator):
     @classmethod
     def _eval_reverse(cls, c, b):
         if b == 0:
-            raise ZeroDivisionError("Tried to divide by zero in Multiply.reverse")
+            raise ZeroDivisionError("tried to divide by zero in Multiply.reverse")
         return c / b
 
 class Divide(NumberOperator):    
     @classmethod
     def _eval(cls, a, b):
         if b == 0:
-            raise ZeroDivisionError("Tried to divide by zero in Divide")
+            raise ZeroDivisionError("tried to divide by zero in Divide")
         return a / b
     
     @classmethod
@@ -89,14 +89,14 @@ class Power(NumberOperator):
     @classmethod
     def _eval_reverse(cls, c, b):
         if b == 0:
-            raise ArithmeticError("Tried to take zeroth root in Power.reverse")
+            raise ArithmeticError("tried to take zeroth root in Power.reverse")
         return c ** (1 / b)
 
 class Root(NumberOperator):    
     @classmethod
     def _eval(cls, a, b):
         if b == 0:
-            raise ArithmeticError("Tried to take zeroth root in Root")
+            raise ArithmeticError("tried to take zeroth root in Root")
         return a ** (1 / b)
     
     @classmethod

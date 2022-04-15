@@ -62,7 +62,7 @@ class EList(list, Iterable[T]):
     
     def _clear_from_single_obj(self, object):
         '''
-        Clear the list from the given object.
+        clear the list from the given object.
         '''
         while True:
             try:
@@ -72,7 +72,7 @@ class EList(list, Iterable[T]):
     
     def clear_from(self, *objects):
         '''
-        Remove all given objects from the list.
+        remove all given objects from the list.
         '''
         for object in objects:
             self._clear_from_single_obj(object)
@@ -80,7 +80,7 @@ class EList(list, Iterable[T]):
         
     def without(self, *objects):
         '''
-        Return a new list without the given objects.
+        return a new list without the given objects.
         '''
         new_list = self.copy()
         new_list.clear_from(*objects)
@@ -188,7 +188,7 @@ class EList(list, Iterable[T]):
 
     def join(self, sep: str = " ") -> str:
         '''
-        Join elements of the list together. All elements must be of type str.
+        join elements of the list together. all elements must be of type str.
         '''
         return sep.join([str(item) for item in self])
 

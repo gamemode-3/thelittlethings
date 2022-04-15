@@ -1,22 +1,14 @@
-from typing import Generic, TypeVar, Type
+from typing import Generic, TypeVar
 
 T = TypeVar('T')
 
 class Mutable(Generic[T]):
     '''
-    Mutable value to be passed by reference.
-    Implements dunder methods to point to the value.
+    mutable value to be passed by reference.
+    implements dunder methods to point to the value.
     '''
     def __init__(self, value):
         self.value: T = value
-
-    def linkable(self):
-        '''
-        Get the linkable object itself.
-        Used when the object is part of an object 
-        and would usually return the value
-        '''
-        return self
 
     def __str__(self):
         return str(self.value)

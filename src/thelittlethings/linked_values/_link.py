@@ -18,7 +18,7 @@ class Link(Mutable):
                 if str(attr).startswith("*") and not str(attr).startswith("**"):
                     break
             else:
-                raise ValueError(f"Wrong number of values for {operator.__name__} (Expected {values_expected}, got {values_given})")
+                raise ValueError(f"wrong number of values for {operator.__name__} (expected {values_expected}, got {values_given})")
     
     @property
     def value(self):
@@ -32,7 +32,7 @@ class Link(Mutable):
             if value1 is not None:
                 self.values[0].__set__(self, value1)
             else:
-                raise ValueError(f"Value cannot be set: {self.operation.__name__}({self.values[0]}, <Any>) != {value}")
+                raise ValueError(f"value cannot be set: {self.operation.__name__}({self.values[0]}, <Any>) != {value}")
         except NotImplementedError as e:
             print(e.with_traceback())
-            print("Cannot set value for link without reverse operation")
+            print("cannot set value for link without reverse operation")

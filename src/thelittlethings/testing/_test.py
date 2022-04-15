@@ -5,8 +5,9 @@ from ..debug import Log
 
 def test(objects, *assert_functions, iterations=10):
     """
-    Test a list of objects with a given assert function.
+    test a list of objects with one or more given assert functions
     """
+
     PASSED = f"[Style: Bright, Color: Green]    PASSED[Style: Reset_All]"
     FAILED =   f"[Style: Bright, Color: Red]!!! FAILED[Style: Reset_All]"
     SUM_PASSED = f"[Style: Bright, Color: Green]PASSED[Style: Reset_All]"

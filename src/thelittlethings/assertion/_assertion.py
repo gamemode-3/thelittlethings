@@ -5,13 +5,13 @@ def assert_true(condition):
     if condition:
         return True
     else:
-        raise AssertionError("Condition is False")
+        raise AssertionError("condition is False")
 
 def assert_false(condition):
     if not condition:
         return True
     else:
-        raise AssertionError("Condition is True")
+        raise AssertionError("condition is True")
 
 def assert_equal(a, b):
     if a == b:
@@ -72,7 +72,7 @@ def assert_type(obj, type):
                 type_str = type[-i].__name__ + ", " + type_str
         else:
             type_str = type.__name__
-        raise AssertionError(f"Object is not an instance of {type_str}.")
+        raise AssertionError(f"object is not an instance of {type_str}.")
     return True
 
 def assert_types(objects, types):
@@ -90,7 +90,7 @@ def assert_types(objects, types):
             else:
                 type_str = type.__name__
             raise AssertionError(
-                f"Object number {index + 1} is not an instance of {type_str}."
+                f"object number {index + 1} is not an instance of {type_str}."
             ) from e
     return True
 

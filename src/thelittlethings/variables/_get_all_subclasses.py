@@ -4,6 +4,10 @@ from .. import EList
 T = TypeVar('T')
 
 def get_all_subclasses(cls: Type[T]) -> List[Type[T]]:
+    """
+    get all subclasses and subclasses of subclasses of a class.
+    """
+
     all_subclasses = EList([])
 
     for subclass in cls.__subclasses__():

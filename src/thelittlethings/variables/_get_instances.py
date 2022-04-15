@@ -5,7 +5,7 @@ T = TypeVar('T')
 
 def get_instances(cls: Type[T]) -> List[T]:
     """
-    Get all instances of a class.
+    get all instances of a class.
     """
     return [
         object 

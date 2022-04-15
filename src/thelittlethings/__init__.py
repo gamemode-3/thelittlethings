@@ -25,7 +25,7 @@ def reset_styles():
             sys.stdout.write("\n")
     except SyntaxError:
         pass
-    sys.stdout.write(translate_color_codes("[Style: reset_all]\r"))
+    sys.stdout.write(translate_color_codes("[style: reset_all]\r"))
     sys.stdout.flush()
     
     Log.close_file()

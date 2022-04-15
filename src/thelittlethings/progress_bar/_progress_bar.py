@@ -5,6 +5,9 @@ from time import sleep, time
 from datetime import datetime
 
 class ProgressBar:
+    """
+    class for easily creating a progress bar
+    """
     def __init__(
         self,
         max_value=100,
