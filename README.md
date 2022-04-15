@@ -59,22 +59,22 @@ a library full of small utilities for you to use in your code
         <td><a href="#-technical-details-7"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#assertion"><pre>& ! assertion</pre></a></td>
+        <td><a href="#assertion">&nbsp! assertion</a></td>
         <td><a href="#-usage-8"> ➜ usage</a></td>
         <td><a href="#-technical-details-8"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#testing.test"> •  testing.test</a></td>
+        <td><a href="#testing.test">✓ testing.test</a></td>
         <td><a href="#-usage-9"> ➜ usage</a></td>
         <td><a href="#-technical-details-9"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#to_string"> •  to_string</a></td>
+        <td><a href="#to_string">Ⓐ to_string</a></td>
         <td><a href="#-usage-10"> ➜ usage</a></td>
         <td><a href="#-technical-details-10"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#constants"> •  constants</a></td>
+        <td><a href="#constants"> constants</a></td>
         <td><a href="#-usage-11"> ➜ usage</a></td>
         <td><a href="#-technical-details-11"> ⛭ technical details</a></td>
     </tr>
