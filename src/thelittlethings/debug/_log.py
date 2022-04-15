@@ -25,7 +25,7 @@ class Log:
                 if isinstance(value_list[i], str):
                     value_list[i] = translate_color_codes(value_list[i], console=True)
             sys.stdout.flush()
-            sys.stdout.write(sep.join(value_list) + end)
+            sys.stdout.write(sep.join(str(value) for value in value_list) + end)
     
         value_list = list(values)
         for i in range(len(value_list)):
