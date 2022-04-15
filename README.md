@@ -13,12 +13,12 @@ a library full of small utilities for you to use in your code
         <td colspan="3">modules, functions and classes</td>
     </tr>
     </td>
-        <td><a href="#auto_reload">⟳ auto_reload</a></td>
+        <td><a href="#auto_reload">🔄 auto_reload</a></td>
         <td><a href="#-usage"> ➜ usage</a></td>
         <td><a href="#-technical-details"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#debug.Log">🗎 debug.Log</a></td>
+        <td><a href="#debug.Log">📄 debug.Log</a></td>
         <td><a href="#-usage-1"> ➜ usage</a></td>
         <td><a href="#-technical-details-1"> ⛭ technical details</a></td>
     </tr>
@@ -28,17 +28,17 @@ a library full of small utilities for you to use in your code
         <td><a href="#-technical-details-2"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#extended_list">≡ extended_list</a></td>
+        <td><a href="#extended_list">📋 extended_list</a></td>
         <td><a href="#-usage-3"> ➜ usage</a></td>
         <td><a href="#-technical-details-3"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#files.load_file">🗁 files.load_file</a></td>
+        <td><a href="#files.load_file">📂 files.load_file</a></td>
         <td><a href="#-usage-4"> ➜ usage</a></td>
         <td><a href="#-technical-details-4"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#linked_values">✎ mutable.Mutable</a></td>
+        <td><a href="#linked_values">✏️ mutable.Mutable</a></td>
         <td><a href="#-usage-5"> ➜ usage</a></td>
         <td><a href="#-technical-details-5"> ⛭ technical details</a></td>
     </tr>
