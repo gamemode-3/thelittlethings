@@ -8,7 +8,7 @@ a library full of small utilities for you to use in your code
 
 • [installation](#installation)
 
-||||
+|Header|
 |---|---|---|
 |• [auto_reload](#auto_reload) | ➜ [usage](#-usage) | ⛭ [technical details](#-technical-details) |
 • [debug.Log](#debug.Log) | ➜ [usage](#-usage-1) | ⛭ [technical details](#-technical-details-1) |
