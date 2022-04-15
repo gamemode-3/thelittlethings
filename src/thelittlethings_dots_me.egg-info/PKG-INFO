@@ -1,3 +1,20 @@
+Metadata-Version: 2.1
+Name: thelittlethings-dots-me
+Version: 0.9.0
+Summary: a library full of small utilities for you to use in your code
+Home-page: https://github.com/dots-git/thelittlethings
+Author: Simon Kriele
+Author-email: kriele.simon@gmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/dots-git/thelittlethings/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.0
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
 # thelittlethings
 
 a library full of small utilities for you to use in your code
@@ -110,9 +127,7 @@ a library full of small utilities for you to use in your code
 
 
 ## installation
-```
-pip install thelittlethings
-```
+thelittlethings is not yet available for installation. you can clone the repository and add the src directory to your PATH or project.
 
 
 ## auto_reload
@@ -704,3 +719,4 @@ names_of_a = get_names(a)
 
 ### ⛭ technical details
 ```get_names``` uses ```inspect``` and will only scan the frame's ```locals``` and ```globals``` for names. if a name has been assigned in a different frame, it will not be returned.
+

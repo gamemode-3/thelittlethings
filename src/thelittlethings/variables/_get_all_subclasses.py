@@ -1,5 +1,5 @@
 from typing import List, TypeVar, Type
-from .. import EList
+from ..extended_list import EList
 
 T = TypeVar('T')
 

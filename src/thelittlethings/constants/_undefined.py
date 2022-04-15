@@ -2,7 +2,7 @@ class NoneType:
     def __new__(cls):
         if not hasattr(cls, 'instance'):
             cls.UNDEFINED = super(NoneType, cls).__new__(cls)
-        cls.UNDEFINED
+        return cls.UNDEFINED
 
     def __repr__(self) -> str:
         return "UNDEFINED"

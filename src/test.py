@@ -1,10 +1,4 @@
-from typing import Callable
-import thelittlethings.assertion as assertion
+from thelittlethings import *
 
-print("```\n- ```".join([
-    func 
-    for func 
-    in dir(assertion) 
-    if isinstance(getattr(assertion, func), Callable) 
-    and not func.startswith("_")
-]))
+
+print(UNDEFINED is None)
