@@ -95,8 +95,8 @@ a library full of small utilities for you to use in your code
         <td><a href="#-technical-details-12"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td align="center"><a href="#variable.get_instances">ᎥᎥᎥ</a></td>
-        <td><a href="#variable.get_instances">variables.get_instances</a></td>
+        <td align="center"><a href="#variables.get_instances">ᎥᎥᎥ</a></td>
+        <td><a href="#variables.get_instances">variables.get_instances</a></td>
         <td><a href="#-usage-13"> ➜ usage</a></td>
         <td><a href="#-technical-details-13"> ⛭ technical details</a></td>
     </tr>
