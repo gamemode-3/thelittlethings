@@ -73,6 +73,25 @@ def assert_type(obj, type):
         else:
             type_str = type.__name__
         raise AssertionError(f"Object is not an instance of {type_str}.")
+    return True
 
+def assert_types(objects, types):
+    for index, obj, type in enumerate(zip(objects, types)):
+        try:
+            assert_type(obj, type)
+        except AssertionError as e:
+            if isinstance(type, Iterable):
+                if len(type) > 0:
+                    type_str = type[-1].__name__
+                if len(type) > 1:
+                    type_str = type[-2].__name__ + " or " + type_str
+                for i in range(3, len(type) + 1):
+                    type_str = type[-i].__name__ + ", " + type_str
+            else:
+                type_str = type.__name__
+            raise AssertionError(
+                f"Object number {index + 1} is not an instance of {type_str}."
+            ) from e
+    return True
 
 del Iterable

@@ -1,24 +1,24 @@
 from typing import Any, Tuple, Type
 from ..mutable._mutable import Mutable
-from ._link_operation import Operation
+from ._link_operator import Operator
 from inspect import signature
 
 
 class Link(Mutable):
-    def __init__(self, operation: Type[Operation], *values: "Tuple[Mutable | Any, ...]"):
-        assert issubclass(operation, Operation)
-        self.operation = operation
+    def __init__(self, operator: Type[Operator], *values: "Tuple[Mutable | Any, ...]"):
+        assert issubclass(operator, Operator)
+        self.operation = operator
         self.values = values
 
         values_given = len(values)
-        values_expected = signature(operation).parameters.__len__()
+        values_expected = signature(operator._eval).parameters.__len__()
         if values_given != values_expected:
-            for attr in signature(operation).parameters.values():
+            for attr in signature(operator._eval).parameters.values():
                 # If an unpack operation is used, the given arguments will not exceed the expected arguments.
                 if str(attr).startswith("*") and not str(attr).startswith("**"):
                     break
             else:
-                raise ValueError(f"Wrong number of values for {operation.__name__} (Expected {values_expected}, got {values_given})")
+                raise ValueError(f"Wrong number of values for {operator.__name__} (Expected {values_expected}, got {values_given})")
     
     @property
     def value(self):

@@ -1,6 +1,6 @@
 from math import isclose
 from random import randrange
-from thelittlethings.linked_values._link_operation import NumberOperation
+from thelittlethings.linked_values._link_operator import NumberOperator
 from thelittlethings.variables import get_all_subclasses
 from colorama import Fore, Style
 
@@ -13,7 +13,7 @@ FAILED = f"{Style.BRIGHT}{Fore.RED}FAILED{Style.NORMAL}{Fore.WHITE}"
 test_amount = 20
 
 # Get all classes that inherit from Operation
-operations = get_all_subclasses(NumberOperation)
+operations = get_all_subclasses(NumberOperator)
 
 summary_string = f"\n        --- Summary ---\n\n"
 

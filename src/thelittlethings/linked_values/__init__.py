@@ -1,2 +1,2 @@
 from ._link import Link
-from ._link_operation import *
+from ._link_operator import *

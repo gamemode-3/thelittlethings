@@ -1,6 +1,6 @@
 import os
 from typing import Any
-from ..values import UNDEFINED
+from ..constants import UNDEFINED
 
 
 def load_file(file_path: str, create_if_nonexistant=True, default: Any = UNDEFINED):
@@ -11,4 +11,9 @@ def load_file(file_path: str, create_if_nonexistant=True, default: Any = UNDEFIN
     if create_if_nonexistant and not os.path.exists(file_path):
         return open(file_path, "x")
     else:
-        return open(file_path, "w")
+        try:
+            return open(file_path, "w")
+        except FileNotFoundError as e:
+            if default is UNDEFINED:
+                raise e
+            return default

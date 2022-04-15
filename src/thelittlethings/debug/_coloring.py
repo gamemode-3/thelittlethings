@@ -1,5 +1,5 @@
 from colorama import Fore, Style, Back
-from ..to_str import list_to_str
+from .. import to_string
 
 
 def translate_color_codes(string: str, console=True):
@@ -67,12 +67,12 @@ def translate_color_codes(string: str, console=True):
                 if console:
                     for key in attribute_value_pairs:
                         if key not in legal_attributes:
-                            valid_attributes = list_to_str([f'"{attr.title()}"' for attr in list(legal_attributes)])
+                            valid_attributes = to_string.list([f'"{attr.title()}"' for attr in list(legal_attributes)])
                             raise AttributeError(f"Attribute \"{key}\" not found. Valid attributes are {valid_attributes}")
                         try:
                             colorization_string += getattr(legal_attributes[key], attribute_value_pairs[key].upper())
                         except AttributeError as e:
-                            valid_values = list_to_str([f'"{value.lower()}"' for value in dir(legal_attributes[key]) if not value.startswith("_")])
+                            valid_values = to_string.list([f'"{value.lower()}"' for value in dir(legal_attributes[key]) if not value.startswith("_")])
                             raise ValueError(f"Invalid value for {key.title()}: {attribute_value_pairs[key]}. Valid values are {valid_values}") from e
 
                 string = string[:expression_start-1] + colorization_string + string[i+1:]

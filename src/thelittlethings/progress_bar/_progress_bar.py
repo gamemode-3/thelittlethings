@@ -7,9 +7,9 @@ from datetime import datetime
 class ProgressBar:
     def __init__(
         self,
-        width=20,
         max_value=100,
-        print_interval=0.1,
+        width=20,
+        log_interval=0.1,
         display_percentage=True,
         display_time_passed=True,
         display_time_remaining=True,
@@ -30,7 +30,7 @@ class ProgressBar:
                 self._cancel,
                 width,
                 max_value,
-                print_interval,
+                log_interval,
                 display_percentage,
                 display_time_passed,
                 display_time_remaining,
@@ -46,7 +46,7 @@ class ProgressBar:
         cancel,
         width,
         max_value,
-        print_interval,
+        log_interval,
         display_percentage,
         display_time_passed,
         display_time_remaining,
@@ -74,7 +74,7 @@ class ProgressBar:
                 bar_string += " "
             sys.stdout.flush()
             sys.stdout.write("\r" + bar_string)
-            sleep(print_interval)
+            sleep(log_interval)
         sys.stdout.write("\n")
     
     def update(self, value):
@@ -120,6 +120,14 @@ class ProgressBar:
         return_str += "【"
         return return_str
 
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        if exc_type is None:
+            self.finish()
+        else:
+            self.cancel()
 
     @property
     def progress(self):

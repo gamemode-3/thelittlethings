@@ -1,4 +1,4 @@
-from typing import Iterable, Iterator, SupportsIndex, TypeVar
+from typing import Iterable, Iterator, SupportsIndex, Tuple, TypeVar
 
 
 T = TypeVar("T")
@@ -190,7 +190,7 @@ class EList(list, Iterable[T]):
         '''
         Join elements of the list together. All elements must be of type str.
         '''
-        return sep.join(self)
+        return sep.join([str(item) for item in self])
 
 
 class EListIterator(Iterator[T]):
@@ -211,7 +211,7 @@ class EListIterator(Iterator[T]):
             return self.e_list[self.index - 1]
     
 
-class EnumeratedEListIterator(EListIterator):
+class EnumeratedEListIterator(EListIterator, Iterator[Tuple[int, T]]):
     def __next__(self) -> T:
         if self.index >= len(self.e_list):
             self.e_list._iterators.remove(self)

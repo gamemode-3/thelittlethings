@@ -1,26 +1,31 @@
 import os
+import sys
 from ._coloring import translate_color_codes
-from ..values import UNDEFINED
+from ..constants import UNDEFINED
 from ..files import load_file
 
 
 class Log:
     print = True
     _file = None
+    sep = " "
+    end = "\n"
 
     _full_str = ""
 
-    def __new__(cls, *values, sep=" ", end="\n", print_=UNDEFINED, file_path=UNDEFINED):
+    def __new__(cls, *values, sep=UNDEFINED, end=UNDEFINED, print_=UNDEFINED, file_path=UNDEFINED):
         file = load_file(file_path, True, default=None) or cls._file
-        print_ = print_ if print_ is not UNDEFINED else cls.print
-
+        print_ = cls.print if print_ is UNDEFINED else print_
+        sep = cls.sep if sep is UNDEFINED else sep
+        end = cls.end if end is UNDEFINED else end
 
         if print_:
             value_list = list(values)
             for i in range(len(value_list)):
                 if isinstance(value_list[i], str):
                     value_list[i] = translate_color_codes(value_list[i], console=True)
-            print(*value_list, sep=sep, end=end)
+            sys.stdout.flush()
+            sys.stdout.write(sep.join(value_list) + end)
     
         value_list = list(values)
         for i in range(len(value_list)):
