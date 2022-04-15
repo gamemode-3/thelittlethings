@@ -13,7 +13,7 @@ a library full of small utilities for you to use in your code
         <td colspan="3" align="center">general</td>
     </tr>
     <tr>
-        <td colspan="3"><a href="#installation">⚙️ installation</a></td>
+        <td colspan="3"><a href="#installation">⭳ installation</a></td>
     </tr>
     <tr>
         <td colspan="3" align="center">modules, functions and classes</td>
