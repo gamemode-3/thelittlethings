@@ -5,182 +5,109 @@ a library full of small utilities for you to use in your code
 
 ## contents
 
-
-• [installation](#installation)
-
 <table>
     <tr>
-        <td colspan="3" align="center">general</td>
+        <td colspan="4" align="center">general</td>
     </tr>
     <tr>
-        <td colspan="3"><a href="#installation">⭳ installation</a></td>
+        <td><a href="#installation">⭳</a></td>
+        <td colspan="3"><a href="#installation">installation</a></td>
     </tr>
     <tr>
-        <td colspan="3" align="center">modules, functions and classes</td>
+        <td colspan="4" align="center">modules, functions and classes</td>
     </tr>
     </td>
-        <td><a href="#auto_reload">⟳ auto_reload</a></td>
+        <td><a href="#auto_reload">⟳</a></td>
+        <td><a href="#auto_reload">auto_reload</a></td>
         <td><a href="#-usage"> ➜ usage</a></td>
         <td><a href="#-technical-details"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#debug.Log">🗎 debug.Log</a></td>
+        <td><a href="#debug.Log">🗎</a></td>
+        <td><a href="#debug.Log">debug.Log</a></td>
         <td><a href="#-usage-1"> ➜ usage</a></td>
         <td><a href="#-technical-details-1"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#debug.Timer">⧖ debug.Timer</a></td>
+        <td><a href="#debug.Timer">⧖</a></td>
+        <td><a href="#debug.Timer">debug.Timer</a></td>
         <td><a href="#-usage-2"> ➜ usage</a></td>
         <td><a href="#-technical-details-2"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#extended_list">≡ extended_list</a></td>
+        <td><a href="#extended_list">≡</a></td>
+        <td><a href="#extended_list">extended_list</a></td>
         <td><a href="#-usage-3"> ➜ usage</a></td>
         <td><a href="#-technical-details-3"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#files.load_file">🗁 files.load_file</a></td>
+        <td><a href="#files.load_file">🗁</a></td>
+        <td><a href="#files.load_file">files.load_file</a></td>
         <td><a href="#-usage-4"> ➜ usage</a></td>
         <td><a href="#-technical-details-4"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#linked_values">✎ mutable.Mutable</a></td>
+        <td><a href="#linked_values">✎</a></td>
+        <td><a href="#linked_values">mutable.Mutable</a></td>
         <td><a href="#-usage-5"> ➜ usage</a></td>
         <td><a href="#-technical-details-5"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#linked_values">∞ linked_values</a></td>
+        <td><a href="#linked_values">∞</a></td>
+        <td><a href="#linked_values">linked_values</a></td>
         <td><a href="#-usage-6"> ➜ usage</a></td>
         <td><a href="#-technical-details-6"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#progress_bar">═ progress_bar</a></td>
+        <td><a href="#progress_bar">═</a></td>
+        <td><a href="#progress_bar">progress_bar</a></td>
         <td><a href="#-usage-7"> ➜ usage</a></td>
         <td><a href="#-technical-details-7"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#assertion">&nbsp! assertion</a></td>
+        <td><a href="#assertion">!</a></td>
+        <td><a href="#assertion">assertion</a></td>
         <td><a href="#-usage-8"> ➜ usage</a></td>
         <td><a href="#-technical-details-8"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#testing.test">✓ testing.test</a></td>
+        <td><a href="#testing.test">✓</a></td>
+        <td><a href="#testing.test">testing.test</a></td>
         <td><a href="#-usage-9"> ➜ usage</a></td>
         <td><a href="#-technical-details-9"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#to_string">Ⓐ to_string</a></td>
+        <td><a href="#to_string">Ⓐ</a></td>
+        <td><a href="#to_string">to_string</a></td>
         <td><a href="#-usage-10"> ➜ usage</a></td>
         <td><a href="#-technical-details-10"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#constants">π constants</a></td>
+        <td><a href="#constants">π</a></td>
+        <td><a href="#constants">constants</a></td>
         <td><a href="#-usage-11"> ➜ usage</a></td>
         <td><a href="#-technical-details-11"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#variables.get_all_subclasses">ᗑ variables.get_all_subclasses</a></td>
+        <td><a href="#variables.get_all_subclasses">ᗑ</a></td>
+        <td><a href="#variables.get_all_subclasses">variables.get_all_subclasses</a></td>
         <td><a href="#-usage-12"> ➜ usage</a></td>
         <td><a href="#-technical-details-12"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#variable.get_instances">ᎥᎥᎥ variables.get_instances</a></td>
+        <td><a href="#variable.get_instances">ᎥᎥᎥ</a></td>
+        <td><a href="#variable.get_instances">variables.get_instances</a></td>
         <td><a href="#-usage-13"> ➜ usage</a></td>
         <td><a href="#-technical-details-13"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#variables.get_names">佟 variables.get_names</a></td>
+        <td><a href="#variables.get_names">佟</a></td>
+        <td><a href="#variables.get_names">variables.get_names</a></td>
         <td><a href="#-usage-14"> ➜ usage</a></td>
         <td><a href="#-technical-details-14"> ⛭ technical details</a></td>
     </tr>
 </table>
 
-<table>
-    <tr>
-        <td colspan="3" align="center">general</td>
-    </tr>
-    <tr>
-        <td colspan="3"><a href="#installation">⚙️ installation</a></td>
-    </tr>
-    <tr>
-        <td colspan="3" align="center">modules, functions and classes</td>
-    </tr>
-    </td>
-        <td><a href="#auto_reload">🔄 auto_reload</a></td>
-        <td><a href="#-usage"> ➜ usage</a></td>
-        <td><a href="#-technical-details"> ⛭ technical details</a></td>
-    </tr>
-    <tr>
-        <td><a href="#debug.Log">📄 debug.Log</a></td>
-        <td><a href="#-usage-1"> ➜ usage</a></td>
-        <td><a href="#-technical-details-1"> ⛭ technical details</a></td>
-    </tr>
-    <tr>
-        <td><a href="#debug.Timer">⏲ debug.Timer</a></td>
-        <td><a href="#-usage-2"> ➜ usage</a></td>
-        <td><a href="#-technical-details-2"> ⛭ technical details</a></td>
-    </tr>
-    <tr>
-        <td><a href="#extended_list">📋 extended_list</a></td>
-        <td><a href="#-usage-3"> ➜ usage</a></td>
-        <td><a href="#-technical-details-3"> ⛭ technical details</a></td>
-    </tr>
-    <tr>
-        <td><a href="#files.load_file">📂 files.load_file</a></td>
-        <td><a href="#-usage-4"> ➜ usage</a></td>
-        <td><a href="#-technical-details-4"> ⛭ technical details</a></td>
-    </tr>
-    <tr>
-        <td><a href="#linked_values">✏️ mutable.Mutable</a></td>
-        <td><a href="#-usage-5"> ➜ usage</a></td>
-        <td><a href="#-technical-details-5"> ⛭ technical details</a></td>
-    </tr>
-    <tr>
-        <td><a href="#linked_values">🔗 linked_values</a></td>
-        <td><a href="#-usage-6"> ➜ usage</a></td>
-        <td><a href="#-technical-details-6"> ⛭ technical details</a></td>
-    </tr>
-    <tr>
-        <td><a href="#progress_bar">➖ progress_bar</a></td>
-        <td><a href="#-usage-7"> ➜ usage</a></td>
-        <td><a href="#-technical-details-7"> ⛭ technical details</a></td>
-    </tr>
-    <tr>
-        <td><a href="#assertion">❗ assertion</a></td>
-        <td><a href="#-usage-8"> ➜ usage</a></td>
-        <td><a href="#-technical-details-8"> ⛭ technical details</a></td>
-    </tr>
-    <tr>
-        <td><a href="#testing.test">✅ testing.test</a></td>
-        <td><a href="#-usage-9"> ➜ usage</a></td>
-        <td><a href="#-technical-details-9"> ⛭ technical details</a></td>
-    </tr>
-    <tr>
-        <td><a href="#to_string">🅰️ to_string</a></td>
-        <td><a href="#-usage-10"> ➜ usage</a></td>
-        <td><a href="#-technical-details-10"> ⛭ technical details</a></td>
-    </tr>
-    <tr>
-        <td><a href="#constants">🎨 constants</a></td>
-        <td><a href="#-usage-11"> ➜ usage</a></td>
-        <td><a href="#-technical-details-11"> ⛭ technical details</a></td>
-    </tr>
-    <tr>
-        <td><a href="#variables.get_all_subclasses">🔱 variables.get_all_subclasses</a></td>
-        <td><a href="#-usage-12"> ➜ usage</a></td>
-        <td><a href="#-technical-details-12"> ⛭ technical details</a></td>
-    </tr>
-    <tr>
-        <td><a href="#variable.get_instances">👥 variables.get_instances</a></td>
-        <td><a href="#-usage-13"> ➜ usage</a></td>
-        <td><a href="#-technical-details-13"> ⛭ technical details</a></td>
-    </tr>
-    <tr>
-        <td><a href="#variables.get_names">🏷️ variables.get_names</a></td>
-        <td><a href="#-usage-14"> ➜ usage</a></td>
-        <td><a href="#-technical-details-14"> ⛭ technical details</a></td>
-    </tr>
-</table>
 
 ## installation
 thelittlethings is not yet available for installation. you can clone the repository and add the src directory to your PATH or project.
