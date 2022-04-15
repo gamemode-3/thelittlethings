@@ -8,8 +8,9 @@ a library full of small utilities for you to use in your code
 
 • [installation](#installation)
 
-|<td colspan=3>Header</td>|
+||||
 |---|---|---|
+|<td colspan=3>Hello|
 |• [auto_reload](#auto_reload) | ➜ [usage](#-usage) | ⛭ [technical details](#-technical-details) |
 • [debug.Log](#debug.Log) | ➜ [usage](#-usage-1) | ⛭ [technical details](#-technical-details-1) |
 | •  [debug.Timer](#debug.Timer) | ➜ [usage](#-usage-2) | ⛭ [technical details](#-technical-details-2) |
