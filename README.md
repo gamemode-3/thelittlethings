@@ -679,7 +679,7 @@ from thelittlethings import constants
 
 ```constants``` is a module that contains some useful constants, some of which are used in the other modules.
 
-currently, ```constants``` contains an ```UNDEFINED``` constant and color constants.
+currently, ```constants``` contains an ```UNDEFINED``` constant , the ```color``` submodule for color constants and the ```math``` submodule for math constants.
 
 ### ⛭ technical details
 ```UNDEFINED``` is part of a custom singleton ```NoneType``` class that will always return ```UNDEFINED```. it supports ```str``` and ```bool``` evaluation.
