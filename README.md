@@ -23,14 +23,14 @@ a library full of small utilities for you to use in your code
         <td><a href="#-technical-details"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td align="center"><a href="#debug.Log">🗎</a></td>
-        <td><a href="#debug.Log">debug.Log</a></td>
+        <td align="center"><a href="#debugLog">🗎</a></td>
+        <td><a href="#debugLog">debug.Log</a></td>
         <td><a href="#-usage-1"> ➜ usage</a></td>
         <td><a href="#-technical-details-1"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td align="center"><a href="#debug.Timer">⧖</a></td>
-        <td><a href="#debug.Timer">debug.Timer</a></td>
+        <td align="center"><a href="#debugTimer">⧖</a></td>
+        <td><a href="#debugTimer">debug.Timer</a></td>
         <td><a href="#-usage-2"> ➜ usage</a></td>
         <td><a href="#-technical-details-2"> ⛭ technical details</a></td>
     </tr>
@@ -41,8 +41,8 @@ a library full of small utilities for you to use in your code
         <td><a href="#-technical-details-3"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td align="center"><a href="#files.load_file">🗁</a></td>
-        <td><a href="#files.load_file">files.load_file</a></td>
+        <td align="center"><a href="#filesload_file">🗁</a></td>
+        <td><a href="#filesload_file">files.load_file</a></td>
         <td><a href="#-usage-4"> ➜ usage</a></td>
         <td><a href="#-technical-details-4"> ⛭ technical details</a></td>
     </tr>
@@ -71,8 +71,8 @@ a library full of small utilities for you to use in your code
         <td><a href="#-technical-details-8"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td align="center"><a href="#testing.test">✓</a></td>
-        <td><a href="#testing.test">testing.test</a></td>
+        <td align="center"><a href="#testingtest">✓</a></td>
+        <td><a href="#testingtest">testing.test</a></td>
         <td><a href="#-usage-9"> ➜ usage</a></td>
         <td><a href="#-technical-details-9"> ⛭ technical details</a></td>
     </tr>
@@ -89,20 +89,20 @@ a library full of small utilities for you to use in your code
         <td><a href="#-technical-details-11"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td align="center"><a href="#variables.get_all_subclasses">ᗑ</a></td>
-        <td><a href="#variables.get_all_subclasses">variables.get_all_subclasses</a></td>
+        <td align="center"><a href="#variablesget_all_subclasses">ᗑ</a></td>
+        <td><a href="#variablesget_all_subclasses">variables.get_all_subclasses</a></td>
         <td><a href="#-usage-12"> ➜ usage</a></td>
         <td><a href="#-technical-details-12"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td align="center"><a href="#variables.get_instances">ᎥᎥᎥ</a></td>
-        <td><a href="#variables.get_instances">variables.get_instances</a></td>
+        <td align="center"><a href="#variablesget_instances">ᎥᎥᎥ</a></td>
+        <td><a href="#variablesget_instances">variables.get_instances</a></td>
         <td><a href="#-usage-13"> ➜ usage</a></td>
         <td><a href="#-technical-details-13"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td align="center"><a href="#variables.get_names">佟</a></td>
-        <td><a href="#variables.get_names">variables.get_names</a></td>
+        <td align="center"><a href="#variablesget_names">佟</a></td>
+        <td><a href="#variablesget_names">variables.get_names</a></td>
         <td><a href="#-usage-14"> ➜ usage</a></td>
         <td><a href="#-technical-details-14"> ⛭ technical details</a></td>
     </tr>
