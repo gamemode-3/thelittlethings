@@ -76,12 +76,12 @@ a library full of small utilities for you to use in your code
         <td><a href="#-technical-details-11"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#variables.get_all_subclasses">☋ variables.get_all_subclasses</a></td>
+        <td><a href="#variables.get_all_subclasses">🔱 variables.get_all_subclasses</a></td>
         <td><a href="#-usage-12"> ➜ usage</a></td>
         <td><a href="#-technical-details-12"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#variable.get_instances">👪 variables.get_instances</a></td>
+        <td><a href="#variable.get_instances">👥 variables.get_instances</a></td>
         <td><a href="#-usage-13"> ➜ usage</a></td>
         <td><a href="#-technical-details-13"> ⛭ technical details</a></td>
     </tr>
