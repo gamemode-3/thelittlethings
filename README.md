@@ -5,12 +5,15 @@ a library full of small utilities for you to use in your code
 
 ## contents
 
-
-• [installation](#installation)
-
 <table>
     <tr>
-        <td colspan="3">modules, functions and classes</td>
+        <td colspan="3" style="font-size:135%">general</td>
+    </tr>
+    <tr>
+        <td colspan="3"><a href="#installation">installation</a></td>
+    </tr>
+    <tr>
+        <td colspan="3" style="font-size:135%">modules, functions and classes</td>
     </tr>
     </td>
         <td><a href="#auto_reload">🔄 auto_reload</a></td>
