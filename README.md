@@ -29,7 +29,7 @@ a library full of small utilities for you to use in your code
         <td><a href="#-technical-details-1"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#debug.Timer">⏲ debug.Timer</a></td>
+        <td><a href="#debug.Timer">⧖ debug.Timer</a></td>
         <td><a href="#-usage-2"> ➜ usage</a></td>
         <td><a href="#-technical-details-2"> ⛭ technical details</a></td>
     </tr>
