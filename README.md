@@ -493,7 +493,7 @@ available boolean operators are:
 - ```Xor(a, b)``` ⟺ ```a ^ b```
 - ```Not(a)``` ⟺ ```not a```
 
-the equivalence is only true if ```a``` and ```b``` are already ```Link```s. inplace operators do not create ```Link``` objects but modify the value directly.
+the equivalence is only true if ```a``` and ```b``` are already ```Link```s.
 
 ### ⛭ technical details
 custom operations can be added by inheriting from ```linked_values.Operator``` and implementing the class methods ```_eval``` and optionally ```_eval_reverse```. the ```has_reverse``` method should work without any changes but if it does not, override it.
@@ -503,6 +503,8 @@ custom operations can be added by inheriting from ```linked_values.Operator``` a
 backwards operators are only implemented for operators for which the position of the arguments is relevant and for which the ```_eval_reverse``` method is implemented.
 
 ```XorOperator``` and ```NotOperator``` are the only ```BooleanOperator```s that supports ```_eval_reverse``` for all values. all other BooleanOperators have cases in which one of the input values is irrelevant. in these cases the input is not modified.
+
+inplace operators do not create ```Link``` objects but modify the value directly.
 
 
 ## progress_bar
