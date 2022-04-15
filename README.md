@@ -74,22 +74,22 @@ a library full of small utilities for you to use in your code
         <td><a href="#-technical-details-10"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#constants"> constants</a></td>
+        <td><a href="#constants">π constants</a></td>
         <td><a href="#-usage-11"> ➜ usage</a></td>
         <td><a href="#-technical-details-11"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#variables.get_all_subclasses"> •  variables.get_all_subclasses</a></td>
+        <td><a href="#variables.get_all_subclasses">ᗑ variables.get_all_subclasses</a></td>
         <td><a href="#-usage-12"> ➜ usage</a></td>
         <td><a href="#-technical-details-12"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#variable.get_instances"> •  variables.get_instances</a></td>
+        <td><a href="#variable.get_instances">ᎥᎥᎥ variables.get_instances</a></td>
         <td><a href="#-usage-13"> ➜ usage</a></td>
         <td><a href="#-technical-details-13"> ⛭ technical details</a></td>
     </tr>
     <tr>
-        <td><a href="#variables.get_names"> •  variables.get_names</a></td>
+        <td><a href="#variables.get_names">佟 variables.get_names</a></td>
         <td><a href="#-usage-14"> ➜ usage</a></td>
         <td><a href="#-technical-details-14"> ⛭ technical details</a></td>
     </tr>
@@ -683,6 +683,10 @@ currently, ```constants``` contains an ```UNDEFINED``` constant , the ```color``
 
 ### ⛭ technical details
 ```UNDEFINED``` is part of a custom singleton ```NoneType``` class that will always return ```UNDEFINED```. it supports ```str``` and ```bool``` evaluation.
+``
+all colors in the ```color``` submodule are tuples of integers from 0 to 255.
+
+the ```math``` submodule uses constants from the builtin ```math``` module.
 
 ## variables.get_all_subclasses
 
