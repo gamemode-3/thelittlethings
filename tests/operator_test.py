@@ -1,6 +1,6 @@
 from math import isclose
 from random import randrange
-from thelittlethings.linked_values._link_operator import NumberOperator
+from thelittlethings.linked_values._operators import NumberOperator
 from thelittlethings.variables import get_all_subclasses
 from colorama import Fore, Style
 

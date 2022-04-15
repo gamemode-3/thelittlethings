@@ -442,34 +442,71 @@ from thelittlethings import linked_values
 
 ```linked_values``` is a class that allows you to link values together using operators:
 ```python
-from thelittlethings import Mutable, Link, Add
-
-a = Mutable(1)
-b = Mutable(2)
-c = Link(Add, a, b)
+from thelittlethings import Value
+a = Value(1)
+b = Value(2)
+c = a + b
 ```
+```a```, ```b``` and ```c``` are now ```1```, ```2``` and ```3``` respectively. continuing the example:
+```python
+a += 1
+```
+```a```, ```b``` and ```c``` are now ```2```, ```2``` and ```4``` respectively.
 
-whenever ```a``` or ```b``` is changed, ```c``` will be updated. if ```c``` is changed, ```a``` will be updated so that ```c``` will be equal to ```a + b```.
+```python
+b -= 2
+```
+```a```, ```b``` and ```c``` are now ```2```, ```0``` and ```2``` respectively.
+
+```python
+c += 3
+```
+```a```, ```b``` and ```c``` are now ```5```, ```0``` and ```5``` respectively.
+
+basically, whenever ```a``` or ```b``` is changed, ```c``` will be updated. if ```c``` is changed, ```a``` will be updated so that ```c``` will be equal to ```a + b```. to have ```b``` be updated instead of ```a```, switch the ```a``` and ```b``` values in the expression. for positional operators (```-```, ```/```, ```**``` etc.), ```linked_values``` provides backwards links that will update the second value in the expression. all operators are subclasses of ```Link```.
+
+available general operators are:
+- ```Value(a)``` ⟺ ```a```
+- ```Eq(a, b)``` ⟺ ```a == b```
+- ```Gt(a, b)``` ⟺ ```a > b```
+- ```Ge(a, b)``` ⟺ ```a >= b```
+- ```Lt(a, b)``` ⟺ ```a < b```
+- ```Le(a, b)``` ⟺ ```a <= b```
 
 available number operators are:
-- ```Add```
-- ```Substract```
-- ```Multiply```
-- ```Divide```
-- ```Power```
-- ```Root```
-- ```Modulo```
-- ```Absolute```
+- ```Add(a, b)``` ⟺ ```a + b```
+- ```Sub(a, b``` ⟺ ```a - b```
+- ```RSub(a, b)``` ⟺ ```b - a```
+- ```Mul(a, b)``` ⟺ ```a * b```
+- ```Div(a, b)``` ⟺ ```a / b```
+- ```RDiv(a, b)``` ⟺ ```b / a```
+- ```Pow(a, b)``` ⟺ ```a ** b```
+- ```RPow(a, b)``` ⟺ ```b ** a```
+- ```Root(a, b)``` ⟺ ```a ** (1 / b)```
+- ```RRoot(a, b)``` ⟺ ```b ** (1 / a)```
+- ```Mod(a, b)``` ⟺ ```a % b```
+- ```Abs(a)``` ⟺ ```abs(a)```
 
 available boolean operators are:
-- ```And```
-- ```Or```
-- ```Not```
+- ```And(a, b)``` ⟺ ```a and b```
+- ```Or(a, b)``` ⟺ ```a or b```
+- ```Xor(a, b)``` ⟺ ```a ^ b```
+- ```Not(a)``` ⟺ ```not a```
+
+the equivalence is only true if ```a``` and ```b``` are already ```Link```s.
 
 ### ⛭ technical details
 custom operations can be added by inheriting from ```linked_values.Operator``` and implementing the class methods ```_eval``` and optionally ```_eval_reverse```. the ```has_reverse``` method should work without any changes but if it does not, override it.
 
 ```Operator``` has the subclasses ```NumberOperator``` and ```BooleanOperator``` that the corresponding operators inherit from.
+
+backwards operators are only implemented for operators for which the position of the arguments is relevant and for which the ```_eval_reverse``` method is implemented.
+
+```XorOperator``` and ```NotOperator``` are the only ```BooleanOperator```s that supports ```_eval_reverse``` for all values. all other BooleanOperators have cases in which one of the input values is irrelevant. in these cases the input is not modified.
+
+inplace operators do not create ```Link``` objects but modify the value directly.
+
+
 ## progress_bar
 
 ### ➜ usage
