@@ -691,8 +691,6 @@ from thelittlethings import get_names
 ```get_names``` is a function that returns all names of a given object.
 
 ```python
-from thelittlethings import get_names
-
 a = list()
 b = a
 c = a
