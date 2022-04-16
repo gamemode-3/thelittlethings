@@ -477,8 +477,9 @@ c += 3
 
 basically, whenever `a` or `b` is changed, `c` will be updated. if `c` is changed, `a` will be updated so that `c` will be equal to `a + b`. to have `b` be updated instead of `a`, switch the `a` and `b` values in the expression. for positional operators (`-`, `/`, `**` etc.), `linked_values` provides backwards links that will update the second value in the expression. all operators are subclasses of `Link`.
 
+use the `Var` `Link` and initialise it with a single value to create a basic mutable variable that will create new `Link` objects when operators are applied to it. use `Attr` and give it an object and an attribute name to link to a given attribute of an object. both `Var` and `Attr` can be initialised with the `immutable` keyword argument which will prevent any operator to modify their values. if you want to modify it manually, use their `set_value` methods.
+
 available general operators are:
-- `Var(a)` ⟺ `Link(a)` ⟺ `a`
 - `Eq(a, b)` ⟺ `a == b`
 - `Gt(a, b)` ⟺ `a > b`
 - `Ge(a, b)` ⟺ `a >= b`
@@ -517,7 +518,7 @@ custom operations can be added by inheriting from `linked_values.Operator` and i
 
 backwards operators are only implemented for operators for which the position of the arguments is relevant and for which the `_eval_reverse` method is implemented.
 
-`XorOperator` and `NotOperator` are the only `BooleanOperator`s that supports `_eval_reverse` for all values. all other BooleanOperators have cases in which one of the input values is irrelevant. in these cases the input is not modified.
+`XorOperator` and `NotOperator` are the only `BooleanOperator`s that support `_eval_reverse` for all values. all other BooleanOperators have cases in which one of the input values is irrelevant. in these cases the input is not modified.
 
 inplace operators do not create `Link` objects but modify the value directly.
 
@@ -590,6 +591,8 @@ from thelittlethings import assert_types
 def my_func(string: str, integer: int, m_list: list)
     assert_types((string, integer, m_list), (str, int, list))
 ```
+
+with all `assert` functions you can pass the `error_message_appendix` keyword argument. the given string will be shown if an error is thrown.
 
 ### ⛭ technical details
 all `assert` functions will throw an `AssertionError` if they fail and otherwise return `True`.
