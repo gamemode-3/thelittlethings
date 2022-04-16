@@ -592,14 +592,12 @@ def my_func(string: str, integer: int, m_list: list)
 all ```assert``` functions will throw an ```AssertionError``` if they fail and otherwise return ```True```.
 
 
-## testing.test
+## testing
 
 ### ➜ usage
 import:
 ```python
 from thelittlethings import testing
-from thelittlethings import test
-from thelittlethings.testing import test
 ```
 
 the ```testing``` module helps you to test your code.
@@ -617,13 +615,61 @@ def test_addition(function_to_test):
     assert_equal(function_to_test(a, b), a + b)
     return f"Passed on {a} + {b}"
 
-test([function_to_test], test_addition, iterations=10)
+testing.test([function_to_test], test_addition, iterations=1)
 ```
 
 the first argument is the list of functions / classes / etc. to test, all other positional arguments will be used to test them. ```test``` will print the results of each individual test as well as a summary of the results per object to test.
 
+if you have multiple seperate tests to run you can use the ```multi_test``` function:
+
+```python
+from thelittlethings import assert_equal
+from random import random
+
+def function_to_test(a, b):
+    return a + b
+
+def test_addition(function_to_test):
+    a = random() * 100 - 50
+    b = random() * 100 - 50
+    assert_equal(function_to_test(a, b), a + b)
+    return f"Passed on {a} + {b}"
+
+def other_function_to_test(a, b):
+    return a - b
+
+def test_subtraction(function_to_test):
+    a = random() * 100 - 50
+    b = random() * 100 - 50
+    assert_equal(function_to_test(a, b), a + b)
+    return f"Passed on {a} + {b}"
+
+testing.multi_test(
+    ([function_to_test], test_addition, {'iterations': 1}),
+    ([other_function_to_test], test_subtraction)
+)
+```
+
+another way to run tests is to use the ```test_from_class``` function:
+
+```python
+from thelittlethings import assert_equal
+
+class TestFunctions:
+    def test_something():
+        assert_equal(1, 1)
+
+testing.test_from_class(TestFunctions, iterations=1)
+```
+
+this will test all the functions in the class that start with ```test_```.
+
 ### ⛭ technical details
 ```test``` uses ```Log``` for outputting the results. therefore, color codes can be used in the testing functions' feedback.
+
+```iterations``` defaults to ```1```.
+
+```test``` and ```test_from_class``` return ```TestSummary``` objects. ```multi_test``` returns a list of ```TestSummary``` objects.
 
 
 ## to_string

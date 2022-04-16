@@ -50,7 +50,7 @@ class TestSummary:
 
 
 
-def test(objects, *assert_functions, iterations=10):
+def test(objects, *assert_functions, iterations=1):
     """
     test a list of objects with one or more given assert functions
     """
@@ -188,7 +188,7 @@ def multi_test(*arguments: Tuple[Tuple[Iterable[Any], Callable, Callable, Dict[s
     return summaries
 
 
-def test_from_class(cls: Type[Any]) -> TestSummary:
+def test_from_class(cls: Type[Any], iterations=1) -> TestSummary:
     """
     run a test with all functions in a class that start with `test_`
     """
