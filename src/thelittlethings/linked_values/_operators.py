@@ -1,3 +1,5 @@
+from math import log
+
 class PEMDAS:
     """
     Enum for the order of operations.
@@ -43,7 +45,7 @@ class Operator:
     @classmethod
     def has_reverse(cls):
         try:
-            cls._eval_reverse(*(1 for _ in range(len(cls._eval_reverse.__code__.co_varnames) - 1)))
+            cls._eval_reverse(*(2 for _ in range(len(cls._eval_reverse.__code__.co_varnames) - 1)))
             return True
         except NotImplementedError:
             return False        
@@ -186,8 +188,8 @@ class BackwardsSubtractionOperator(NumberOperator):
         return b - a
     
     @classmethod
-    def _eval_reverse(cls, c, a):
-        return c + a
+    def _eval_reverse(cls, c, b):
+        return b - c
 
 class MultiplicationOperator(NumberOperator):    
     order = PEMDAS.MD
@@ -228,8 +230,8 @@ class BackwardsDivisionOperator(NumberOperator):
         return b / a
     
     @classmethod
-    def _eval_reverse(cls, c, a):
-        return c * a
+    def _eval_reverse(cls, c, b):
+        return b / c
 
 class PowerOperator(NumberOperator):
     order = PEMDAS.E
@@ -254,10 +256,12 @@ class BackwardsPowerOperator(NumberOperator):
         return b ** a
     
     @classmethod
-    def _eval_reverse(cls, c, a):
-        if a == 0:
-            raise ArithmeticError("tried to take zeroth root in BackwardsPowerOperator.reverse")
-        return c ** (1 / a)
+    def _eval_reverse(cls, c, b):
+        if c < 0 or b < 0:
+            raise ArithmeticError("tried to take logarithm of non positive number in BackwardsPowerOperator.reverse")
+        if b == 1:
+            raise ArithmeticError("tried divide by zero (log(1)) in BackwardsPowerOperator.reverse")
+        return log(c, b)
 
 class RootOperator(NumberOperator):
     order = PEMDAS.E
@@ -272,7 +276,10 @@ class RootOperator(NumberOperator):
     
     @classmethod
     def _eval_reverse(cls, c, b):
+        if b == 0:
+            raise ArithmeticError("tried to take zeroth root in RootOperator.reverse")
         return c ** b
+
 
 class BackwardsRootOperator(NumberOperator):
     order = PEMDAS.E
@@ -285,8 +292,12 @@ class BackwardsRootOperator(NumberOperator):
         return b ** (1 / a)
     
     @classmethod
-    def _eval_reverse(cls, c, a):
-        return c ** a
+    def _eval_reverse(cls, c, b):
+        if b < 0 or c < 0:
+            raise ArithmeticError("tried to take logarithm of non positive number in BackwardsRootOperator.reverse")
+        if c == 1:
+            raise ArithmeticError("tried divide by zero (log(1)) in BackwardsRootOperator.reverse")
+        return log(b, c)
 
 class ModuloOperator(NumberOperator):
     order = PEMDAS.MD

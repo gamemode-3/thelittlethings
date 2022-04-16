@@ -1,4 +1,4 @@
-from typing import Any, Generic, Tuple, Type, TypeVar
+from typing import Any, Tuple, Type, TypeVar
 from ..mutable._mutable import Mutable
 from ._operators import *
 from inspect import signature
@@ -121,7 +121,7 @@ class Var(Link[T]):
 class OperatorLink(Link[T]):
     def __init__(self, operator: Type[Operator], *values: "Tuple[T, ...]"):
         assert issubclass(operator, Operator)
-        self.operator = operator
+        self.operator: Type[Operator] = operator
         self.inputs = list(values)
 
         values_given = len(values)
@@ -227,69 +227,75 @@ class Lt(OperatorLink[bool]):
 class Le(OperatorLink[bool]):
     def __init__(self, a: OperatorLink, b: OperatorLink):
         super().__init__(LessEqualOperator, a, b)
-        
 
-class Add(OperatorLink[T]):
+
+class NumberOperatorLink(OperatorLink[T]): 
+    pass
+
+class Add(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(AdditionOperator, a, b)
         
-class Sub(OperatorLink[T]):
+class Sub(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(SubtractionOperator, a, b)
         
-class RSub(OperatorLink[T]):
+class RSub(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(BackwardsSubtractionOperator, a, b)
         
-class Mul(OperatorLink[T]):
+class Mul(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(MultiplicationOperator, a, b)
         
-class Div(OperatorLink[T]):
+class Div(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(DivisionOperator, a, b)
         
-class RDiv(OperatorLink[T]):
+class RDiv(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(BackwardsDivisionOperator, a, b)
         
-class Pow(OperatorLink[T]):
+class Pow(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(PowerOperator, a, b)
         
-class RPow(OperatorLink[T]):
+class RPow(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(BackwardsPowerOperator, a, b)
         
-class Root(OperatorLink[T]):
+class Root(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(RootOperator, a, b)
         
-class RRoot(OperatorLink[T]):
+class RRoot(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(BackwardsRootOperator, a, b)
         
-class Mod(OperatorLink[T]):
+class Mod(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(ModuloOperator, a, b)
         
-class Abs(OperatorLink[T]):
+class Abs(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T"):
         super().__init__(AbsoluteOperator, a)
-        
 
-class And(OperatorLink[T]):
+
+class BooleanOperatorLink(OperatorLink[T]):
+    pass
+
+class And(BooleanOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(AndOperator, a, b)
         
-class Or(OperatorLink[T]):
+class Or(BooleanOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(OrOperator, a, b)
         
-class Xor(OperatorLink[T]):
+class Xor(BooleanOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(XorOperator, a, b)
         
-class Not(OperatorLink[T]):
+class Not(BooleanOperatorLink[T]):
     def __init__(self, a: "Link[T] | T"):
         super().__init__(NotOperator, a)
