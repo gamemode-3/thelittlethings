@@ -142,7 +142,7 @@ class Link(Mutable[T], Generic[T]):
         return self
 
 
-class Value(Link[T]):
+class Var(Link[T]):
     def __init__(self, value: T):
         super().__init__(ValueOperator, value)
 
