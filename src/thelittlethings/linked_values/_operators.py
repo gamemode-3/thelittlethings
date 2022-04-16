@@ -372,8 +372,12 @@ class NotOperator(BooleanOperator):
   
     @classmethod
     def _eval(cls, a):
-        return not a
+        if isinstance(a, bool):
+            return not a
+        return ~a
     
     @classmethod
     def _eval_reverse(cls, b):
-        return not b
+        if isinstance(b, bool):
+            return not b
+        return ~b

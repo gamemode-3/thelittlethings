@@ -466,7 +466,7 @@ c += 3
 basically, whenever ```a``` or ```b``` is changed, ```c``` will be updated. if ```c``` is changed, ```a``` will be updated so that ```c``` will be equal to ```a + b```. to have ```b``` be updated instead of ```a```, switch the ```a``` and ```b``` values in the expression. for positional operators (```-```, ```/```, ```**``` etc.), ```linked_values``` provides backwards links that will update the second value in the expression. all operators are subclasses of ```Link```.
 
 available general operators are:
-- ```Value(a)``` ⟺ ```a```
+- ```Var(a)``` ⟺ ```Link(a)``` ⟺ ```a```
 - ```Eq(a, b)``` ⟺ ```a == b```
 - ```Gt(a, b)``` ⟺ ```a > b```
 - ```Ge(a, b)``` ⟺ ```a >= b```
