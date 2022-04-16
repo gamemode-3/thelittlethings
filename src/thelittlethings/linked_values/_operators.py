@@ -1,4 +1,20 @@
+class PEMDAS:
+    """
+    Enum for the order of operations.
+    """
+    AS = 0 # Addition, Subtraction
+    MD = 1 # Multiplication, Division (and Modulo)
+    E = 2 # Exponentiation
+    P = 3 # Parentheses
+
+
 class Operator:
+    order = PEMDAS.P
+    print_pattern = "$a [operator] $b"
+    """
+    $a, $b, $c, ... will be replaced by their values based on the _eval method's signature.
+    """
+
     # TODO: Add proper min and max values
     def __init__(self):
         self.min_values = {}
@@ -32,16 +48,10 @@ class Operator:
         except NotImplementedError:
             return False        
 
-class ValueOperator(Operator):
-    @classmethod
-    def _eval(cls, a):
-        return a
-    
-    @classmethod
-    def _eval_reverse(cls, b):
-        return b
-
 class EqualOperator(Operator):
+    order = PEMDAS.P
+    print_pattern = "$a == $b"
+
     @classmethod
     def _eval(cls, a, b):
         return a == b
@@ -53,7 +63,25 @@ class EqualOperator(Operator):
         else:
             return None
 
+class NotEqualOperator(Operator):
+    order = PEMDAS.P
+    print_pattern = "$a != $b"
+
+    @classmethod
+    def _eval(cls, a, b):
+        return a != b
+    
+    @classmethod
+    def _eval_reverse(cls, b, c):
+        if c:
+            return None
+        else:
+            return b
+
 class GreaterOperator(Operator):
+    order = PEMDAS.P
+    print_pattern = "$a > $b"
+
     @classmethod
     def _eval(cls, a, b):
         return a > b
@@ -66,6 +94,9 @@ class GreaterOperator(Operator):
             return None
 
 class GreaterEqualOperator(Operator):
+    order = PEMDAS.P
+    print_pattern = "$a >= $b"
+
     @classmethod
     def _eval(cls, a, b):
         return a >= b
@@ -78,6 +109,9 @@ class GreaterEqualOperator(Operator):
             return None
 
 class LessOperator(Operator):
+    order = PEMDAS.P
+    print_pattern = "$a < $b"
+
     @classmethod
     def _eval(cls, a, b):
         return a < b
@@ -90,6 +124,9 @@ class LessOperator(Operator):
             return None
             
 class LessEqualOperator(Operator):
+    order = PEMDAS.P
+    print_pattern = "$a <= $b"
+
     @classmethod
     def _eval(cls, a, b):
         return a <= b
@@ -103,6 +140,9 @@ class LessEqualOperator(Operator):
 
 
 class NumberOperator(Operator):
+    order = PEMDAS.P
+    print_pattern = "$a [number_operator] $b"
+
     @classmethod
     def _eval(cls, *values):
         return super()._eval(cls)
@@ -111,7 +151,10 @@ class NumberOperator(Operator):
     def _eval_reverse(cls, c, b):
         return super()._eval_reverse(c, b)
 
-class AdditionOperator(NumberOperator):    
+class AdditionOperator(NumberOperator):
+    order = PEMDAS.AS
+    print_pattern = "$a + $b"
+
     @classmethod
     def _eval(cls, a, b):
         return a + b
@@ -120,7 +163,10 @@ class AdditionOperator(NumberOperator):
     def _eval_reverse(cls, c, b):
         return c - b
 
-class SubtractionOperator(NumberOperator):    
+class SubtractionOperator(NumberOperator):
+    order = PEMDAS.AS
+    print_pattern = "$a - $b"
+
     @classmethod
     def _eval(cls, a, b):
         return a - b
@@ -131,7 +177,10 @@ class SubtractionOperator(NumberOperator):
 
 # All positional operators that have a reverse operation need a
 # corresponding backwards operator.
-class BackwardsSubtractionOperator(NumberOperator):    
+class BackwardsSubtractionOperator(NumberOperator):
+    order = PEMDAS.AS
+    print_pattern = "$b - $a"
+
     @classmethod
     def _eval(cls, a, b):
         return b - a
@@ -140,7 +189,10 @@ class BackwardsSubtractionOperator(NumberOperator):
     def _eval_reverse(cls, c, a):
         return c + a
 
-class MultiplicationOperator(NumberOperator):     
+class MultiplicationOperator(NumberOperator):    
+    order = PEMDAS.MD
+    print_pattern =  "$a * $b"
+
     @classmethod
     def _eval(cls, a, b):
         return a * b
@@ -151,7 +203,10 @@ class MultiplicationOperator(NumberOperator):
             raise ZeroDivisionError("tried to divide by zero in MultiplicationOperator.reverse")
         return c / b
 
-class DivisionOperator(NumberOperator):    
+class DivisionOperator(NumberOperator):
+    order = PEMDAS.MD
+    print_pattern = "$a / $b"
+ 
     @classmethod
     def _eval(cls, a, b):
         if b == 0:
@@ -162,7 +217,10 @@ class DivisionOperator(NumberOperator):
     def _eval_reverse(cls, c, b):
         return c * b
 
-class BackwardsDivisionOperator(NumberOperator):    
+class BackwardsDivisionOperator(NumberOperator):
+    order = PEMDAS.MD
+    print_pattern = "$b / $a"
+
     @classmethod
     def _eval(cls, a, b):
         if a == 0:
@@ -173,7 +231,10 @@ class BackwardsDivisionOperator(NumberOperator):
     def _eval_reverse(cls, c, a):
         return c * a
 
-class PowerOperator(NumberOperator):    
+class PowerOperator(NumberOperator):
+    order = PEMDAS.E
+    print_pattern = "$a**$b"
+
     @classmethod
     def _eval(cls, a, b):
         return a ** b
@@ -185,6 +246,9 @@ class PowerOperator(NumberOperator):
         return c ** (1 / b)
 
 class BackwardsPowerOperator(NumberOperator):
+    order = PEMDAS.E
+    print_pattern = "$b**$a"
+
     @classmethod
     def _eval(cls, a, b):
         return b ** a
@@ -195,7 +259,11 @@ class BackwardsPowerOperator(NumberOperator):
             raise ArithmeticError("tried to take zeroth root in BackwardsPowerOperator.reverse")
         return c ** (1 / a)
 
-class RootOperator(NumberOperator):    
+class RootOperator(NumberOperator):
+    order = PEMDAS.E
+    print_pattern = "$a**(1/$b)"
+
+
     @classmethod
     def _eval(cls, a, b):
         if b == 0:
@@ -207,6 +275,9 @@ class RootOperator(NumberOperator):
         return c ** b
 
 class BackwardsRootOperator(NumberOperator):
+    order = PEMDAS.E
+    print_pattern = "$b**(1/$a)"
+
     @classmethod
     def _eval(cls, a, b):
         if a == 0:
@@ -217,7 +288,10 @@ class BackwardsRootOperator(NumberOperator):
     def _eval_reverse(cls, c, a):
         return c ** a
 
-class ModuloOperator(NumberOperator):    
+class ModuloOperator(NumberOperator):
+    order = PEMDAS.MD
+    print_pattern = "$a %% $b"
+
     @classmethod
     def _eval(cls, a, b):
         return a % b
@@ -226,7 +300,10 @@ class ModuloOperator(NumberOperator):
     def _eval_reverse(cls, c, b):
         raise NotImplementedError("ModuloOperator does not have a reverse operation")
 
-class AbsoluteOperator(NumberOperator):    
+class AbsoluteOperator(NumberOperator):
+    order = PEMDAS.P
+    print_pattern = "abs($a)"
+
     @classmethod
     def _eval(cls, a):
         return abs(a)
@@ -236,6 +313,9 @@ class AbsoluteOperator(NumberOperator):
         raise NotImplementedError("AbsOperator does not have a reverse operation")
 
 class BooleanOperator(Operator):
+    order = PEMDAS.P
+    print_pattern = "$a [boolean_operator] $b"
+
     @classmethod
     def _eval(cls, *values):
         return super()._eval(cls)
@@ -244,10 +324,13 @@ class BooleanOperator(Operator):
     def _eval_reverse(cls, result, *values):
         return super()._eval_reverse(result, *values)
         
-class AndOperator(BooleanOperator):    
+class AndOperator(BooleanOperator): 
+    order = PEMDAS.E
+    print_pattern = "$a & $b"
+
     @classmethod
     def _eval(cls, a, b):
-        return a and b
+        return a & b
     
     @classmethod
     def _eval_reverse(cls, c, b):
@@ -255,11 +338,14 @@ class AndOperator(BooleanOperator):
             return None
         else:
             return c
+        
+class OrOperator(BooleanOperator): 
+    order = PEMDAS.MD
+    print_pattern = "$a | $b"
 
-class OrOperator(BooleanOperator):    
     @classmethod
     def _eval(cls, a, b):
-        return a or b
+        return a | b
     
     @classmethod
     def _eval_reverse(cls, c, b):
@@ -268,7 +354,10 @@ class OrOperator(BooleanOperator):
         else:
             return c
 
-class XorOperator(BooleanOperator):    
+class XorOperator(BooleanOperator):  
+    order = PEMDAS.MD
+    print_pattern = "$a ^ $b"
+  
     @classmethod
     def _eval(cls, a, b):
         return a ^ b
@@ -277,7 +366,10 @@ class XorOperator(BooleanOperator):
     def _eval_reverse(cls, c, b):
         return c ^ b
 
-class NotOperator(BooleanOperator):    
+class NotOperator(BooleanOperator):  
+    order = PEMDAS.P
+    print_pattern = "~$a"
+  
     @classmethod
     def _eval(cls, a):
         return not a

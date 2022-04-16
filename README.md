@@ -488,10 +488,10 @@ available number operators are:
 - ```Abs(a)``` ⟺ ```abs(a)```
 
 available boolean operators are:
-- ```And(a, b)``` ⟺ ```a and b```
-- ```Or(a, b)``` ⟺ ```a or b```
+- ```And(a, b)``` ⟺ ```a & b```
+- ```Or(a, b)``` ⟺ ```a | b```
 - ```Xor(a, b)``` ⟺ ```a ^ b```
-- ```Not(a)``` ⟺ ```not a```
+- ```Not(a)``` ⟺ ```~a```
 
 the equivalence is only true if ```a``` and ```b``` are already ```Link```s.
 
