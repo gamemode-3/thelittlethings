@@ -106,6 +106,18 @@ a library full of small utilities for you to use in your code
         <td><a href="#-usage-14"> ➜ usage</a></td>
         <td><a href="#-technical-details-14"> ⛭ technical details</a></td>
     </tr>
+    <tr>
+        <td align="center"><a href="#variablesget_types">『』</a></td>
+        <td><a href="#variablesget_types">variables.get_types</a></td>
+        <td><a href="#-usage-15"> ➜ usage</a></td>
+        <td><a href="#-technical-details-15"> ⛭ technical details</a></td>
+    </tr>
+    <tr>
+        <td align="center"><a href="#variablesget_first_shared_inheritance">∩</a></td>
+        <td><a href="#variablesget_first_shared_inheritance">variables.get_first_shared_inheritance</a></td>
+        <td><a href="#-usage-16"> ➜ usage</a></td>
+        <td><a href="#-technical-details-16"> ⛭ technical details</a></td>
+    </tr>
 </table>
 
 
@@ -739,3 +751,56 @@ names_of_a = get_names(a)
 
 ### ⛭ technical details
 ```get_names``` uses ```inspect``` and will only scan the frame's ```locals``` and ```globals``` for names. if a name has been assigned in a different frame, it will not be returned.
+
+## variables.get_types
+
+### ➜ usage
+import:
+```python
+from thelittlethings import get_types
+```
+
+```get_types``` is a function that returns all types of a given objects.
+
+```python
+a = list()
+b = set()
+
+types = get_types(a, b)
+```
+
+```types``` is now ```(list, set)```.
+
+### ⛭ technical details
+```get_types``` returns a tuple of the type returned by the ```type``` function for each object.
+
+## variables.get_first_shared_inheritance
+
+### ➜ usage
+import:
+```python
+from thelittlethings import get_first_shared_inheritance
+```
+
+```get_first_shared_inheritance``` is a function that returns the first class that all given objects inherit from.
+
+```python
+from thelittlethings import get_first_shared_inheritance
+
+class A:
+    pass
+
+class B(A):
+    pass
+
+class C(A):
+    pass
+
+first_shared_inheritance = get_first_shared_inheritance(B(), C())
+```
+
+```first_shared_inheritance``` is now ```A```.
+
+
+### ⛭ technical details
+```get_first_shared_inheritance``` recursively scans all objects from the inheritance tree. it supports multiple inheritance.

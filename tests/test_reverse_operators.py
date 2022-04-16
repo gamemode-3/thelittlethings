@@ -2,6 +2,7 @@ import inspect
 import random
 from typing import Type
 from src.thelittlethings import test, assert_close, Var, NumberOperatorLink, get_all_subclasses
+from . import all_tests
 
 
 def test_reverse_operators(operator: Type[NumberOperatorLink]):
@@ -25,4 +26,4 @@ operators = [
     and len(inspect.signature(op.__init__).parameters) == 3
 ]
 
-test(operators, test_reverse_operators, iterations = 100)
+all_tests.all_tests.append((operators, test_reverse_operators, {"iterations": 100}))

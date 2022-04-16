@@ -3,6 +3,7 @@ from typing import Any, Callable, Dict, Iterable, Tuple, Type
 import inspect
 from ..debug import Log
 from .. import to_string
+from .. import get_first_shared_inheritance
 
 
 Log.load_file("testing.log")
@@ -137,7 +138,7 @@ def test(objects, *assert_functions, iterations=10):
     
     Log(summary_string)
 
-    return TestSummary(type(objects[0]), assert_functions, total_fails, iterations * len(objects) * len(assert_functions))
+    return TestSummary(get_first_shared_inheritance([obj.__class__ for obj in objects]), assert_functions, total_fails, iterations * len(objects) * len(assert_functions))
 
 
 def multi_test(*arguments: Tuple[Tuple[Iterable[Any], Callable, Callable, Dict[str, Any]]]):

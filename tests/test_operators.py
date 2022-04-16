@@ -1,6 +1,7 @@
 import random
 from src.thelittlethings import multi_test, assert_close, assert_equal
 from src.thelittlethings.linked_values import *
+from . import all_tests
 
 
 def test_int_operators(operator: str):
@@ -53,7 +54,9 @@ def test_bool_operators(operator: str):
 
 boolean_operators = ["&", "|", "^"]
 
-multi_test(
-    (number_operators, test_int_operators, test_float_operators, {"iterations": 100}),
+all_tests.all_tests.append(
+    (number_operators, test_int_operators, test_float_operators, {"iterations": 100})
+)
+all_tests.all_tests.append(
     (boolean_operators, test_bool_operators, {"iterations": 100})
 )

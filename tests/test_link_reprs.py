@@ -1,5 +1,6 @@
 from src.thelittlethings import test, assert_close
 from src.thelittlethings.linked_values import *
+from . import all_tests
 
 
 def test_link_repr(link: Link):
@@ -25,4 +26,6 @@ links = [
     Var(2) % 3 + 5,
 ]
 
-test(links, test_link_repr)
+all_tests.all_tests.append(
+    (links, test_link_repr, {"iterations": 1})
+)
