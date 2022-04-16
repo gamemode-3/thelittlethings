@@ -93,7 +93,6 @@ class Link(Mutable[T]):
     def __rxor__(self, other):
         return Xor(other, self)
 
-    
     def __iadd__(self, other):
         other_value = other.value if isinstance(other, OperatorLink) else other
         self.value += other_value
@@ -101,9 +100,10 @@ class Link(Mutable[T]):
 
 
 class Attr(Link[T]):
-    def __init__(self, obj: Any, attr: str, type_hint: Type[T] = Any):
+    def __init__(self, obj: Any, attr: str, type_hint: Type[T] = Any, immutable=False):
         self.obj = obj
         self.attr = attr
+        self.immutable = immutable
     
     @property
     def value(self) -> T:
@@ -111,12 +111,31 @@ class Attr(Link[T]):
     
     @value.setter
     def value(self, value: T):
-        setattr(self.obj, self.attr, value)        
+        if self.immutable:
+            raise AttributeError("attribute is immutable. modify it using set_value(value).")
+        setattr(self.obj, self.attr, value)   
+
+    def set_value(self, value: T):
+        setattr(self.obj, self.attr, value)   
 
 class Var(Link[T]):
-    pass # essentially a type alias for Link[T], used this instead
-         # of Var = Link for syntax highlighting.
-
+    def __init__(self, value: T, immutable=False):
+        self._value = value
+        self.immutable = immutable
+    
+    @property
+    def value(self) -> T:
+        return self._value
+    
+    @value.setter
+    def value(self, value: T):
+        if self.immutable:
+            raise AttributeError("variable is immutable. modify it using set_value(value).")
+        self._value = value
+    
+    def set_value(self, value: T):
+        self._value = value
+        
 
 class OperatorLink(Link[T]):
     def __init__(self, operator: Type[Operator], *values: "Tuple[T, ...]"):
