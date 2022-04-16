@@ -1,4 +1,4 @@
-from typing import Generic, Tuple, Type, TypeVar
+from typing import Any, Generic, Tuple, Type, TypeVar
 from ..mutable._mutable import Mutable
 from ._operators import *
 from inspect import signature
@@ -140,6 +140,20 @@ class Link(Mutable[T], Generic[T]):
         other_value = other.value if isinstance(other, Link) else other
         self.value += other_value
         return self
+
+
+class Attr(Link[T]):
+    def __init__(self, obj: Any, attr: str):
+        self.obj = obj
+        self.attr = attr
+    
+    @property
+    def value(self) -> T:
+        return getattr(self.obj, self.attr)
+    
+    @value.setter
+    def value(self, value: T):
+        setattr(self.obj, self.attr, value)        
 
 
 class Var(Link[T]):
