@@ -280,6 +280,18 @@ class Abs(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T"):
         super().__init__(AbsoluteOperator, a)
 
+class Ln(NumberOperatorLink[T]):
+    def __init__(self, a: "Link[T] | T"):
+        super().__init__(NaturalLogarithmOperator, a)
+
+class LogB(NumberOperatorLink[T]):
+    def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
+        super().__init__(BaseBLogarithmOperator, a, b)
+
+class RLogB(NumberOperatorLink[T]):
+    def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
+        super().__init__(BackwardsBaseBLogarithmOperator, a, b)
+
 
 class BooleanOperatorLink(OperatorLink[T]):
     pass
