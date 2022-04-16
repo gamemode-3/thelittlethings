@@ -2,6 +2,7 @@ from typing import Any, Tuple, Type, TypeVar
 from ..mutable._mutable import Mutable
 from ._operators import *
 from inspect import signature
+from ..assertion import assert_type, assert_true
 
 
 T = TypeVar('T')
@@ -139,7 +140,12 @@ class Var(Link[T]):
 
 class OperatorLink(Link[T]):
     def __init__(self, operator: Type[Operator], *values: "Tuple[T, ...]"):
-        assert issubclass(operator, Operator)
+        assert_type(operator, Operator)
+        assert_true(
+            any(isinstance(value, Mutable) for value in values),
+            f"one of the inputs to an OperatorLink like {self.__class__.__name__} must be a Mutable. use Var(value) to create one."
+        )
+
         self.operator: Type[Operator] = operator
         self.inputs = list(values)
 
