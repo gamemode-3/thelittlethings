@@ -1,0 +1,116 @@
+PASSED: Var(1) + 2 + 3 - test link repr - passed
+PASSED: Var(1) + 2 + 3 - test link repr - passed
+PASSED: Var(1) + 2 + 3 - test link repr - passed
+PASSED: Var(1) + 2 + 3 - test link repr - passed
+PASSED: Var(1) + 2 + 3 - test link repr - passed
+PASSED: Var(1) + 2 + 3 - test link repr - passed
+PASSED: Var(1) + 2 + 3 - test link repr - passed
+PASSED: Var(1) + 2 + 3 - test link repr - passed
+PASSED: Var(1) + 2 + 3 - test link repr - passed
+PASSED: Var(1) + 2 + 3 - test link repr - passed
+PASSED: Var(1) + 2 + 3 + 4 - test link repr - passed
+PASSED: Var(1) + 2 + 3 + 4 - test link repr - passed
+PASSED: Var(1) + 2 + 3 + 4 - test link repr - passed
+PASSED: Var(1) + 2 + 3 + 4 - test link repr - passed
+PASSED: Var(1) + 2 + 3 + 4 - test link repr - passed
+PASSED: Var(1) + 2 + 3 + 4 - test link repr - passed
+PASSED: Var(1) + 2 + 3 + 4 - test link repr - passed
+PASSED: Var(1) + 2 + 3 + 4 - test link repr - passed
+PASSED: Var(1) + 2 + 3 + 4 - test link repr - passed
+PASSED: Var(1) + 2 + 3 + 4 - test link repr - passed
+PASSED: Var(2) + 0.75 - test link repr - passed
+PASSED: Var(2) + 0.75 - test link repr - passed
+PASSED: Var(2) + 0.75 - test link repr - passed
+PASSED: Var(2) + 0.75 - test link repr - passed
+PASSED: Var(2) + 0.75 - test link repr - passed
+PASSED: Var(2) + 0.75 - test link repr - passed
+PASSED: Var(2) + 0.75 - test link repr - passed
+PASSED: Var(2) + 0.75 - test link repr - passed
+PASSED: Var(2) + 0.75 - test link repr - passed
+PASSED: Var(2) + 0.75 - test link repr - passed
+PASSED: 0.75 + Var(2) - test link repr - passed
+PASSED: 0.75 + Var(2) - test link repr - passed
+PASSED: 0.75 + Var(2) - test link repr - passed
+PASSED: 0.75 + Var(2) - test link repr - passed
+PASSED: 0.75 + Var(2) - test link repr - passed
+PASSED: 0.75 + Var(2) - test link repr - passed
+PASSED: 0.75 + Var(2) - test link repr - passed
+PASSED: 0.75 + Var(2) - test link repr - passed
+PASSED: 0.75 + Var(2) - test link repr - passed
+PASSED: 0.75 + Var(2) - test link repr - passed
+PASSED: 3 + 4 / Var(2) - test link repr - passed
+PASSED: 3 + 4 / Var(2) - test link repr - passed
+PASSED: 3 + 4 / Var(2) - test link repr - passed
+PASSED: 3 + 4 / Var(2) - test link repr - passed
+PASSED: 3 + 4 / Var(2) - test link repr - passed
+PASSED: 3 + 4 / Var(2) - test link repr - passed
+PASSED: 3 + 4 / Var(2) - test link repr - passed
+PASSED: 3 + 4 / Var(2) - test link repr - passed
+PASSED: 3 + 4 / Var(2) - test link repr - passed
+PASSED: 3 + 4 / Var(2) - test link repr - passed
+PASSED: 3 + 4 / Var(2) + 5 - test link repr - passed
+PASSED: 3 + 4 / Var(2) + 5 - test link repr - passed
+PASSED: 3 + 4 / Var(2) + 5 - test link repr - passed
+PASSED: 3 + 4 / Var(2) + 5 - test link repr - passed
+PASSED: 3 + 4 / Var(2) + 5 - test link repr - passed
+PASSED: 3 + 4 / Var(2) + 5 - test link repr - passed
+PASSED: 3 + 4 / Var(2) + 5 - test link repr - passed
+PASSED: 3 + 4 / Var(2) + 5 - test link repr - passed
+PASSED: 3 + 4 / Var(2) + 5 - test link repr - passed
+PASSED: 3 + 4 / Var(2) + 5 - test link repr - passed
+PASSED: 7 / Var(2) + 5 - test link repr - passed
+PASSED: 7 / Var(2) + 5 - test link repr - passed
+PASSED: 7 / Var(2) + 5 - test link repr - passed
+PASSED: 7 / Var(2) + 5 - test link repr - passed
+PASSED: 7 / Var(2) + 5 - test link repr - passed
+PASSED: 7 / Var(2) + 5 - test link repr - passed
+PASSED: 7 / Var(2) + 5 - test link repr - passed
+PASSED: 7 / Var(2) + 5 - test link repr - passed
+PASSED: 7 / Var(2) + 5 - test link repr - passed
+PASSED: 7 / Var(2) + 5 - test link repr - passed
+PASSED: 7 / (Var(2) + 5) - test link repr - passed
+PASSED: 7 / (Var(2) + 5) - test link repr - passed
+PASSED: 7 / (Var(2) + 5) - test link repr - passed
+PASSED: 7 / (Var(2) + 5) - test link repr - passed
+PASSED: 7 / (Var(2) + 5) - test link repr - passed
+PASSED: 7 / (Var(2) + 5) - test link repr - passed
+PASSED: 7 / (Var(2) + 5) - test link repr - passed
+PASSED: 7 / (Var(2) + 5) - test link repr - passed
+PASSED: 7 / (Var(2) + 5) - test link repr - passed
+PASSED: 7 / (Var(2) + 5) - test link repr - passed
+PASSED: 3 % Var(2) + 5 - test link repr - passed
+PASSED: 3 % Var(2) + 5 - test link repr - passed
+PASSED: 3 % Var(2) + 5 - test link repr - passed
+PASSED: 3 % Var(2) + 5 - test link repr - passed
+PASSED: 3 % Var(2) + 5 - test link repr - passed
+PASSED: 3 % Var(2) + 5 - test link repr - passed
+PASSED: 3 % Var(2) + 5 - test link repr - passed
+PASSED: 3 % Var(2) + 5 - test link repr - passed
+PASSED: 3 % Var(2) + 5 - test link repr - passed
+PASSED: 3 % Var(2) + 5 - test link repr - passed
+PASSED: Var(2) % 3 + 5 - test link repr - passed
+PASSED: Var(2) % 3 + 5 - test link repr - passed
+PASSED: Var(2) % 3 + 5 - test link repr - passed
+PASSED: Var(2) % 3 + 5 - test link repr - passed
+PASSED: Var(2) % 3 + 5 - test link repr - passed
+PASSED: Var(2) % 3 + 5 - test link repr - passed
+PASSED: Var(2) % 3 + 5 - test link repr - passed
+PASSED: Var(2) % 3 + 5 - test link repr - passed
+PASSED: Var(2) % 3 + 5 - test link repr - passed
+PASSED: Var(2) % 3 + 5 - test link repr - passed
+
+
+
+                       --- summary ---
+
+PASSED: Var(1) + 2 + 3     - test link repr - passed all tests
+PASSED: Var(1) + 2 + 3 + 4 - test link repr - passed all tests
+PASSED: Var(2) + 0.75      - test link repr - passed all tests
+PASSED: 0.75 + Var(2)      - test link repr - passed all tests
+PASSED: 3 + 4 / Var(2)     - test link repr - passed all tests
+PASSED: 3 + 4 / Var(2) + 5 - test link repr - passed all tests
+PASSED: 7 / Var(2) + 5     - test link repr - passed all tests
+PASSED: 7 / (Var(2) + 5)   - test link repr - passed all tests
+PASSED: 3 % Var(2) + 5     - test link repr - passed all tests
+PASSED: Var(2) % 3 + 5     - test link repr - passed all tests
+

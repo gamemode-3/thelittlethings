@@ -290,7 +290,7 @@ class BackwardsRootOperator(NumberOperator):
 
 class ModuloOperator(NumberOperator):
     order = PEMDAS.MD
-    print_pattern = "$a %% $b"
+    print_pattern = "$a % $b"
 
     @classmethod
     def _eval(cls, a, b):
