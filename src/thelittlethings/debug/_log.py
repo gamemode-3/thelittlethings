@@ -1,4 +1,3 @@
-import os
 import sys
 from ._coloring import translate_color_codes
 from ..constants import UNDEFINED
@@ -6,6 +5,11 @@ from ..files import load_file
 
 
 class Log:
+    """
+    a class for logging information to the console and / or a file.
+
+    looking for the logarithm operator? use ```Ln```, ```LogB``` or ```RLogB```.
+    """
     print = True
     _file = None
     sep = " "

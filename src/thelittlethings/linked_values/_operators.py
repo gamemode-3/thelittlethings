@@ -1,4 +1,5 @@
-from math import log
+from math import exp, log
+
 
 class PEMDAS:
     """
@@ -320,8 +321,45 @@ class AbsoluteOperator(NumberOperator):
         return abs(a)
     
     @classmethod
-    def _eval_reverse(cls, c, b):
+    def _eval_reverse(cls, b):
         raise NotImplementedError("AbsOperator does not have a reverse operation")
+
+class NaturalLogarithmOperator(NumberOperator):
+    order = PEMDAS.P
+    print_pattern = "Ln($a)"
+
+    @classmethod
+    def _eval(cls, a):
+        return log(a)
+    
+    @classmethod
+    def _eval_reverse(cls, b):
+        return exp(b)
+
+class BaseBLogarithmOperator(NumberOperator):
+    order = PEMDAS.P
+    print_pattern = "LogB($a, $b)"
+
+    @classmethod
+    def _eval(cls, a, b):
+        return log(a, b)
+    
+    @classmethod
+    def _eval_reverse(cls, c, b):
+        return b**c
+    
+class BackwardsBaseBLogarithmOperator(NumberOperator):
+    order = PEMDAS.P
+    print_pattern = "RLogB($a, $b)"
+
+    @classmethod
+    def _eval(cls, a, b):
+        return log(b, a)
+
+    @classmethod
+    def _eval_reverse(cls, c, b):
+        return exp(log(b) / c)
+
 
 class BooleanOperator(Operator):
     order = PEMDAS.P
