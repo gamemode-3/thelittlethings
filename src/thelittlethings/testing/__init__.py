@@ -1,1 +1,1 @@
-from ._test import test
+from ._test import test, multi_test, test_from_class

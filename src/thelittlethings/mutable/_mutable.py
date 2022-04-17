@@ -7,8 +7,8 @@ class Mutable(Generic[T]):
     mutable value to be passed by reference.
     implements dunder methods to point to the value.
     '''
-    def __init__(self, value):
-        self.value: T = value
+    def __init__(self, value: T):
+        self.value = value
 
     def __str__(self):
         return str(self.value)

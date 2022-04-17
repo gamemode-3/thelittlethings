@@ -1,4 +1,4 @@
-from typing import Generic, Tuple, Type, TypeVar
+from typing import Any, Tuple, Type, TypeVar
 from ..mutable._mutable import Mutable
 from ._operators import *
 from inspect import signature
@@ -7,53 +7,11 @@ from inspect import signature
 T = TypeVar('T')
 
 
-class Link(Mutable[T], Generic[T]):
-    def __init__(self, operator: Type[Operator], *values: "Tuple[T, ...]"):
-        assert issubclass(operator, Operator)
-        self.operator = operator
-        self.inputs = list(values)
+class Link(Mutable[T]):
 
-        values_given = len(values)
-        values_expected = signature(operator._eval).parameters.__len__()
-        if values_given != values_expected:
-            for attr in signature(operator._eval).parameters.values():
-                # If an unpack operation is used, the given arguments will not exceed the expected arguments.
-                if str(attr).startswith("*") and not str(attr).startswith("**"):
-                    break
-            else:
-                raise ValueError(f"wrong number of values for {operator.__name__} (expected {values_expected}, got {values_given})")
-    
-    @property
-    def value(self) -> T:
-        inputs = (
-            value.value 
-            if isinstance(value, Mutable) 
-            else value
-            for value 
-            in self.inputs
-        )
-
-        return self.operator(*inputs)
-    
-    @value.setter
-    def value(self, value):
-        # Modify the first value using the reverse operation
-        try:
-            value1 = self.operator.reverse(value, *self.inputs[1:])
-            if value1 is not None:
-                if isinstance(self.inputs[0], Mutable):
-                    self.inputs[0].__set__(self, value1)
-                else:
-                    self.inputs[0] = value1
-            else:
-                raise ValueError(f"value cannot be set: {self.operator.__name__}({self.inputs[0]}, <Any>) != {value}")
-        except NotImplementedError as e:
-            print(e.with_traceback())
-            print("cannot set value for link without reverse operation")
-    
     def __repr__(self):
-        return f"{self.__class__.__name__}({', '.join(map(repr, self.inputs))})"
-    
+        return f'{self.__class__.__name__}({self.value})'
+
     def __add__(self, other):
         return Add(self, other)
     
@@ -94,7 +52,7 @@ class Link(Mutable[T], Generic[T]):
         return Abs(self)
     
     def __neg__(self):
-        return Not(self)
+        return Mul(self, -1)
 
     def __invert__(self):
         return Not(self)
@@ -103,7 +61,7 @@ class Link(Mutable[T], Generic[T]):
         return Eq(self, other)
 
     def __ne__(self, other):
-        return Not(Eq(self, other))
+        return Ne(self, other)
     
     def __gt__(self, other):
         return Gt(self, other)
@@ -137,97 +95,207 @@ class Link(Mutable[T], Generic[T]):
 
     
     def __iadd__(self, other):
-        other_value = other.value if isinstance(other, Link) else other
+        other_value = other.value if isinstance(other, OperatorLink) else other
         self.value += other_value
         return self
 
 
-class Value(Link[T]):
-    def __init__(self, value: T):
-        super().__init__(ValueOperator, value)
+class Attr(Link[T]):
+    def __init__(self, obj: Any, attr: str, type_hint: Type[T] = Any):
+        self.obj = obj
+        self.attr = attr
+    
+    @property
+    def value(self) -> T:
+        return getattr(self.obj, self.attr)
+    
+    @value.setter
+    def value(self, value: T):
+        setattr(self.obj, self.attr, value)        
 
-class Eq(Link[bool]):
-    def __init__(self, a: Link, b: Link):
+class Var(Link[T]):
+    pass # essentially a type alias for Link[T], used this instead
+         # of Var = Link for syntax highlighting.
+
+
+class OperatorLink(Link[T]):
+    def __init__(self, operator: Type[Operator], *values: "Tuple[T, ...]"):
+        assert issubclass(operator, Operator)
+        self.operator: Type[Operator] = operator
+        self.inputs = list(values)
+
+        values_given = len(values)
+        values_expected = signature(operator._eval).parameters.__len__()
+        if values_given != values_expected:
+            for attr in signature(operator._eval).parameters.values():
+                # If an unpack operation is used, the given arguments will not exceed the expected arguments.
+                if str(attr).startswith("*") and not str(attr).startswith("**"):
+                    break
+            else:
+                raise ValueError(f"wrong number of values for {operator.__name__} (expected {values_expected}, got {values_given})")
+    
+        self.order = operator.order
+        self.print_pattern = operator.print_pattern
+        
+    @property
+    def value(self) -> T:
+        inputs = (
+            value.value 
+            if isinstance(value, Mutable) 
+            else value
+            for value 
+            in self.inputs
+        )
+
+        return self.operator(*inputs)
+    
+    @value.setter
+    def value(self, value):
+        # Modify the first value using the reverse operation
+        try:
+            value1 = self.operator.reverse(value, *self.inputs[1:])
+            if value1 is not None:
+                if isinstance(self.inputs[0], Mutable):
+                    self.inputs[0].__set__(self, value1)
+                else:
+                    self.inputs[0] = value1
+            else:
+                raise ValueError(f"value cannot be set: {self.operator.__name__}({self.inputs[0]}, <Any>) != {value}")
+        except NotImplementedError as e:
+            print(e.with_traceback())
+            print("cannot set value for link without reverse operation")
+
+    
+    def __repr__(self):
+        # return the link string using the print pattern
+        return_value = self.print_pattern
+        operator_inputs = signature(self.operator._eval).parameters
+
+        for index, (value, name) in enumerate(zip(self.inputs, operator_inputs)):
+            
+            def is_paren_needed(value):
+                if len(operator_inputs) <= 1:
+                    return False
+                if isinstance(value, OperatorLink):
+                    if value.order < self.order:
+                        return True
+                    if (
+                        index != 0 
+                        and value.order == self.order
+                        and value.operator.__name__ != self.operator.__name__ 
+                    ):
+                        return True
+
+            if is_paren_needed(value):
+                value = f"({repr(value)})"
+            
+            else:
+                value = repr(value)
+
+            return_value = return_value.replace(f"${name}", value)
+        
+        return return_value
+    
+
+    def __getitem__(self, key):
+        return self.inputs[key]
+
+    def __setitem__(self, key, value):
+        self.inputs[key] = value
+
+
+class Eq(OperatorLink[bool]):
+    def __init__(self, a: OperatorLink, b: OperatorLink):
         super().__init__(EqualOperator, a, b)
 
-class Gt(Link[bool]):
-    def __init__(self, a: Link, b: Link):
+class Ne(OperatorLink[bool]):
+    def __init__(self, a: OperatorLink, b: OperatorLink):
+        super().__init__(NotEqualOperator, a, b)
+
+class Gt(OperatorLink[bool]):
+    def __init__(self, a: OperatorLink, b: OperatorLink):
         super().__init__(GreaterOperator, a, b)
-
-class Ge(Link[bool]):
-    def __init__(self, a: Link, b: Link):
+        
+class Ge(OperatorLink[bool]):
+    def __init__(self, a: OperatorLink, b: OperatorLink):
         super().__init__(GreaterEqualOperator, a, b)
-
-class Lt(Link[bool]):
-    def __init__(self, a: Link, b: Link):
+        
+class Lt(OperatorLink[bool]):
+    def __init__(self, a: OperatorLink, b: OperatorLink):
         super().__init__(LessOperator, a, b)
-
-class Le(Link[bool]):
-    def __init__(self, a: Link, b: Link):
+        
+class Le(OperatorLink[bool]):
+    def __init__(self, a: OperatorLink, b: OperatorLink):
         super().__init__(LessEqualOperator, a, b)
 
 
-class Add(Link[T]):
+class NumberOperatorLink(OperatorLink[T]): 
+    pass
+
+class Add(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(AdditionOperator, a, b)
-
-class Sub(Link[T]):
+        
+class Sub(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(SubtractionOperator, a, b)
-
-class RSub(Link[T]):
+        
+class RSub(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(BackwardsSubtractionOperator, a, b)
-
-class Mul(Link[T]):
+        
+class Mul(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(MultiplicationOperator, a, b)
-
-class Div(Link[T]):
+        
+class Div(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(DivisionOperator, a, b)
-
-class RDiv(Link[T]):
+        
+class RDiv(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(BackwardsDivisionOperator, a, b)
-
-class Pow(Link[T]):
+        
+class Pow(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(PowerOperator, a, b)
-
-class RPow(Link[T]):
+        
+class RPow(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(BackwardsPowerOperator, a, b)
-
-class Root(Link[T]):
+        
+class Root(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(RootOperator, a, b)
-
-class RRoot(Link[T]):
+        
+class RRoot(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(BackwardsRootOperator, a, b)
-
-class Mod(Link[T]):
+        
+class Mod(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(ModuloOperator, a, b)
-
-class Abs(Link[T]):
+        
+class Abs(NumberOperatorLink[T]):
     def __init__(self, a: "Link[T] | T"):
         super().__init__(AbsoluteOperator, a)
 
 
-class And(Link[T]):
+class BooleanOperatorLink(OperatorLink[T]):
+    pass
+
+class And(BooleanOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(AndOperator, a, b)
-
-class Or(Link[T]):
+        
+class Or(BooleanOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(OrOperator, a, b)
-
-class Xor(Link[T]):
+        
+class Xor(BooleanOperatorLink[T]):
     def __init__(self, a: "Link[T] | T", b: "Link[T] | T"):
         super().__init__(XorOperator, a, b)
-
-class Not(Link[T]):
+        
+class Not(BooleanOperatorLink[T]):
     def __init__(self, a: "Link[T] | T"):
         super().__init__(NotOperator, a)

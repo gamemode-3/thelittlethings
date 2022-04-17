@@ -1,3 +1,20 @@
+Metadata-Version: 2.1
+Name: thelittlethings
+Version: 1.0.0
+Summary: a library full of small utilities for you to use in your code
+Home-page: https://github.com/dots-git/thelittlethings
+Author: Simon Kriele
+Author-email: kriele.simon@gmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/dots-git/thelittlethings/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.0
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
 # thelittlethings
 
 a library full of small utilities for you to use in your code
@@ -122,13 +139,8 @@ a library full of small utilities for you to use in your code
 
 
 ## installation
-make sure that you have [python3](https://www.python.org/downloads/) and [pip](https://pypi.org/project/pip/) installed and run the following command:
 ```
 pip install thelittlethings
-```
-if that doesn't work, try the following command:
-```
-pip3 install thelittlethings
 ```
 
 
@@ -855,3 +867,4 @@ first_shared_inheritance = get_first_shared_inheritance(B(), C())
 
 ### ⛭ technical details
 ```get_first_shared_inheritance``` recursively scans all objects from the inheritance tree. it supports multiple inheritance.
+
