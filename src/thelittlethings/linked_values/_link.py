@@ -144,7 +144,7 @@ class Var(Link[T]):
 
 class OperatorLink(Link[T]):
     def __init__(self, operator: Type[Operator], *values: "Tuple[T, ...]"):
-        assert_type(operator, Operator)
+        assert_type(operator, Type[Operator])
         assert_type(
             values[0],
             Mutable,
