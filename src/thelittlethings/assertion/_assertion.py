@@ -143,5 +143,3 @@ def assert_types(objects, types, error_message_appendix=None):
                 f"object number {index + 1} is not an instance of {type_str}{error_message_appendix}"
             ) from e
     return True
-
-del Iterable
