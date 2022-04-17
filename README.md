@@ -118,6 +118,14 @@ if that doesn't work, try the following command:
 ```
 pip3 install thelittlethings
 ```
+to update, run the following command:
+```
+pip install --upgrade thelittlethings
+```
+to uninstall, run the following command:
+```
+pip uninstall thelittlethings
+```
 
 
 ## auto_reload
