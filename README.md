@@ -524,6 +524,10 @@ available boolean operators are:
 
 the equivalence is only true if `a` is already a `Link` and (for reverse operators) if `b` is not.
 
+some additional info on `Attr`:\
+you can input strings in the format of `"a.b.c"` to access attributes of attributes of attributes etc. for `Link`s, `Attr` will get the `value`'s attribute.
+
+
 ### ⛭ technical details
 custom operations can be added by inheriting from `linked_values.Operator` and implementing the class methods `_eval` and optionally `_eval_reverse`. the `has_reverse` method should work without any changes but if it does not, override it.
 
@@ -813,6 +817,9 @@ names_of_a = get_names(a)
 ```
 
 `names_of_a` is now `["a", "b", "c"]`.
+
+if you want to get the object's names in a different frame, use the `frame` keyword argument and pass an `inspect.frame` object.
+
 
 ### ⛭ technical details
 `get_names` uses `inspect` and will only scan the frame's `locals` and `globals` for names. if a name has been assigned in a different frame, it will not be returned.

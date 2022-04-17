@@ -1,8 +1,10 @@
+import inspect
 from typing import Any, Tuple, Type, TypeVar
 from ..mutable._mutable import Mutable
 from ._operators import *
 from inspect import signature
 from ..assertion import assert_type, assert_true
+from ..variables import get_names
 
 
 T = TypeVar("T")
@@ -102,12 +104,30 @@ class Link(Mutable[T]):
 class Attr(Link[T]):
     def __init__(self, obj: Any, attr: str, type_hint: Type[T] = Any, immutable=False):
         self.obj = obj
-        self.attr = attr
+        self.attr_list = attr.split(".")
         self.immutable = immutable
+        obj_names = get_names(obj, inspect.currentframe().f_back)
+        obj_repr = repr(obj)
+        has_no_repr = obj_repr.startswith("<") and obj_repr.endswith(">")
+        # try to avoid using builtin <Class object at 0x2974c29d8f> repr by getting names in frame back
+        self.obj_name = obj_names[0] if len(obj_names) > 0 and has_no_repr else obj_repr
+
+    @property
+    def attr_holder(self):
+        attr_holder = self.obj.value if isinstance(self.obj, Mutable) else self.obj
+
+        for attr in self.attr_list[:-1]:
+            attr_holder = getattr(attr_holder, attr)
+        
+        return attr_holder
+    
+    @property
+    def final_attr(self):
+        return self.attr_list[-1]
 
     @property
     def value(self) -> T:
-        return getattr(self.obj, self.attr)
+        return getattr(self.attr_holder, self.final_attr)
 
     @value.setter
     def value(self, value: T):
@@ -115,10 +135,13 @@ class Attr(Link[T]):
             raise AttributeError(
                 "attribute is immutable. modify it using set_value(value)."
             )
-        setattr(self.obj, self.attr, value)
+        setattr(self.attr_holder, self.final_attr, value)
 
     def set_value(self, value: T):
-        setattr(self.obj, self.attr, value)
+        setattr(self.attr_holder, self.final_attr, value)
+
+    def __repr__(self):
+        return f"Attr({self.obj_name}, \"{'.'.join(self.attr_list)}\")"
 
 
 class Var(Link[T]):
