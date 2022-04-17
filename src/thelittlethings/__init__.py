@@ -5,6 +5,7 @@ a library full of small utilities for you to use in your code
 
 from .progress_bar import *
 from . import auto_reload
+from .assertion import *
 from .mutable import *
 from .variables import *
 from .linked_values import *

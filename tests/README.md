@@ -1,1 +1,0 @@
-These are just me playing around with the package.

@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+
 from multiprocessing import Manager
 import multiprocessing
 import sys
