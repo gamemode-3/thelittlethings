@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="thelittlethings",
-    version="1.0.5",
+    version="1.0.7",
     author="Simon Kriele",
     author_email="kriele.simon@gmail.com",
     description="a library full of small utilities for you to use in your code",

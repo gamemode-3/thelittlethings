@@ -99,6 +99,13 @@ class Link(Mutable[T]):
         other_value = other.value if isinstance(other, OperatorLink) else other
         self.value += other_value
         return self
+    
+    def __get__(self, instance, owner):
+        return self
+    
+    def __set__(self, instance, value):
+        raise TypeError(f"{value} is not an instance of OperatorLink")
+
 
 
 class Attr(Link[T]):
