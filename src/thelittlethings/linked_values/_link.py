@@ -1,5 +1,5 @@
 import inspect
-from typing import Any, Tuple, Type, TypeVar
+from typing import Any, Callable, Tuple, Type, TypeVar
 from ..mutable._mutable import Mutable
 from ._operators import *
 from inspect import signature
@@ -163,6 +163,29 @@ class Var(Link[T]):
 
     def set_value(self, value: T):
         self._value = value
+
+class Func(Link[T]):
+    def __init__(self, getter: Callable[[], T], setter: Callable[[T], None] = None, *args, **kwargs):
+        '''
+        link to a getter and a setter function. 
+        '''
+        if setter is not None and not callable(setter):
+            args = (setter, *args)
+            setter = None
+        self.getter = getter
+        self.setter = setter
+        self.args = args
+        self.kwargs = kwargs
+    
+    @property
+    def value(self) -> T:
+        return self.getter(*self.args, **self.kwargs)
+    
+    @value.setter
+    def value(self, value: T):
+        if self.setter is None:
+            raise AttributeError("can't set value of function link without setter")
+        self.setter(value, *self.args, **self.kwargs)
 
 
 class OperatorLink(Link[T]):
