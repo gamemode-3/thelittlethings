@@ -165,7 +165,7 @@ class Var(Link[T]):
         self._value = value
 
 class Func(Link[T]):
-    def __init__(self, getter: Callable[[], T], setter: Callable[[T], None] = None, *args, **kwargs):
+    def __init__(self, getter: Callable[[Any], T], setter: Callable[[T, Any], None] = None, *args, type_hint: Type[T] = Any, **kwargs):
         '''
         link to a getter and a setter function. 
         '''
@@ -186,6 +186,9 @@ class Func(Link[T]):
         if self.setter is None:
             raise AttributeError("can't set value of function link without setter")
         self.setter(value, *self.args, **self.kwargs)
+    
+    def __repr__(self):
+        return f"Func({self.getter}, {self.setter})"
 
 
 class OperatorLink(Link[T]):
