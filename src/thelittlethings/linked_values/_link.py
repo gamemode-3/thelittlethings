@@ -133,11 +133,11 @@ class Attr(Link[T]):
     def value(self, value: T):
         if self.immutable:
             raise AttributeError(
-                "attribute is immutable. modify it using set_value(value)."
+                "attribute is immutable. modify it using set(value)."
             )
         setattr(self.attr_holder, self.final_attr, value)
 
-    def set_value(self, value: T):
+    def set(self, value: T):
         setattr(self.attr_holder, self.final_attr, value)
 
     def __repr__(self):
@@ -157,11 +157,11 @@ class Var(Link[T]):
     def value(self, value: T):
         if self.immutable:
             raise AttributeError(
-                "variable is immutable. modify it using set_value(value)."
+                "variable is immutable. modify it using set(value)."
             )
         self._value = value
 
-    def set_value(self, value: T):
+    def set(self, value: T):
         self._value = value
 
 class Func(Link[T]):
@@ -189,6 +189,55 @@ class Func(Link[T]):
     
     def __repr__(self):
         return f"Func({self.getter}, {self.setter})"
+
+
+    def __iadd__(self, other):
+        self.value = self.value + other
+        return self
+    
+    def __isub__(self, other):
+        self.value = self.value - other
+        return self
+    
+    def __imul__(self, other):
+        self.value = self.value * other
+        return self
+    
+    def __itruediv__(self, other):
+        self.value = self.value / other
+        return self
+    
+    def __ifloordiv__(self, other):
+        self.value = self.value // other
+        return self
+    
+    def __imod__(self, other):
+        self.value = self.value % other
+        return self
+    
+    def __ipow__(self, other):
+        self.value = self.value ** other
+        return self
+    
+    def __ilshift__(self, other):
+        self.value = self.value << other
+        return self
+    
+    def __irshift__(self, other):
+        self.value = self.value >> other
+        return self
+    
+    def __iand__(self, other):
+        self.value = self.value & other
+        return self
+    
+    def __ixor__(self, other):
+        self.value = self.value ^ other
+        return self
+    
+    def __ior__(self, other):
+        self.value = self.value | other
+        return self
 
 
 class OperatorLink(Link[T]):

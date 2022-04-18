@@ -490,7 +490,7 @@ c += 3
 
 basically, whenever `a` or `b` is changed, `c` will be updated. if `c` is changed, `a` will be updated so that `c` will be equal to `a + b`. to have `b` be updated instead of `a`, switch the `a` and `b` values in the expression. for positional operators (`-`, `/`, `**` etc.), `linked_values` provides backwards links that will update the second value in the expression. all operators are subclasses of `Link`.
 
-use the `Var` `Link` and initialise it with a single value to create a basic mutable variable that will create new `Link` objects when operators are applied to it. use `Attr` and give it an object and an attribute name to link to a given attribute of an object. both `Var` and `Attr` can be initialised with the `immutable` keyword argument which will prevent any operator to modify their values. if you want to modify it manually, use their `set_value` methods.
+the most basic `Link`s are `Var`, `Attr` and `Func`. `Var` simply holds an object, `Attr` refers to an object's attribute and `Func` holds getter and setter functions that will be called when the value is accessed or modified. `Var` and `Attr` can be marked as immutable and can then only be modified by passing a function to the `set` method.
 
 available general operators are:
 - `Eq(a, b)` ⟺ `a == b`
