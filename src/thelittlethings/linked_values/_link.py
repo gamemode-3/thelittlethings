@@ -18,7 +18,7 @@ class Link(Mutable[T]):
         return Add(self, other)
 
     def __radd__(self, other):
-        return Add(other, self)
+        return Add(self, other)
 
     def __sub__(self, other):
         return Sub(self, other)
@@ -48,7 +48,7 @@ class Link(Mutable[T]):
         return Mod(self, other)
 
     def __rmod__(self, other):
-        return Mod(other, self)
+        return Mod(self, other)
 
     def __abs__(self):
         return Abs(self)
@@ -81,19 +81,19 @@ class Link(Mutable[T]):
         return And(self, other)
 
     def __rand__(self, other):
-        return And(other, self)
+        return And(self, other)
 
     def __or__(self, other):
         return Or(self, other)
 
     def __ror__(self, other):
-        return Or(other, self)
+        return Or(self, other)
 
     def __xor__(self, other):
         return Xor(self, other)
 
     def __rxor__(self, other):
-        return Xor(other, self)
+        return Xor(self, other)
 
     def __iadd__(self, other):
         other_value = other.value if isinstance(other, OperatorLink) else other
