@@ -1,6 +1,6 @@
 import traceback
 from ._log import Log
-from ..variables import get_instances, get_names
+from ..variables import get_instances
 from time import perf_counter
 from colorama import Fore, Style
 
@@ -78,7 +78,7 @@ class TimerObject:
             (_,_,_,text)=traceback.extract_stack()[-3]
             name = text[:text.find('=')].strip()
         if name == "Timer(":
-            raise Exception("Timer requires a name. Use Timer(name), Timer.start(name) or name = Timer().")
+            raise Exception("timer requires a name. Use Timer(\"name\"), Timer.start(\"name\") or name = Timer().")
         self.name = name
         self.start()
     
